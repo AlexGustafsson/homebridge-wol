@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/nfarina/homebridge-dummy.git"
+    "url": "git://github.com/alexgustafsson/homebridge-wol.git"
   },
   "author": "Alex Gustafsson",
   "license": "ISC",
