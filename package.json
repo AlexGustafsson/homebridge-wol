@@ -1,0 +1,21 @@
+{
+  "name": "homebridge-wol",
+  "version": "1.0.0",
+  "description": "A Wake on Lan plugin for Homebridge: https://github.com/nfarina/homebridge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nfarina/homebridge-dummy.git"
+  },
+  "author": "Alex Gustafsson",
+  "license": "ISC",
+  "dependencies": {
+    "wake_on_lan": "0.0.4"
+  }
+}
