@@ -17,5 +17,9 @@
   "license": "ISC",
   "dependencies": {
     "wake_on_lan": "0.0.4"
+  },
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0"
   }
 }
