@@ -29,7 +29,7 @@ Computer.prototype.getServices = function() {
 Computer.prototype._setOn = function(on, callback) {
 
   if(on){
-    wol.wake(this.name, function(error) {
+    wol.wake(this.mac, function(error) {
       if (error) {
         this._service.setCharacteristic(Characteristic.On, false);
         this.log("Error when sending packets", error);
