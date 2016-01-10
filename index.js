@@ -39,7 +39,7 @@ Computer.prototype._setOn = function(on, callback) {
           this._service.setCharacteristic(Characteristic.On, false);
         }.bind(this), 30000);
       }
-    });
+    }.bind(this));
   }
 
   callback();
