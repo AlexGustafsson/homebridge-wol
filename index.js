@@ -125,6 +125,9 @@ Computer.prototype.startChecking = function() {
             //Reset the failed attempts
             failedAttempts = 0;
 
+            //Log the event
+            this.log("The computer is most likely off - switching off");
+
             //Turn the switch off
             this._service.setCharacteristic(Characteristic.On, false);
           }
@@ -136,7 +139,7 @@ Computer.prototype.startChecking = function() {
     setTimeout(function() {
       //Turn the switch off
       this._service.setCharacteristic(Characteristic.On, false);
-    }
+    }.bind(this), 30 * 1000);
   }
 }
 
