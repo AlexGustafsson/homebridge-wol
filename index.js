@@ -65,43 +65,53 @@ Computer.prototype._setOn = function(on, callback) {
       } else {
         //Log that the packets were sent
         this.log("Packets sent");
-        //Wait 30 seconds to give the computer some time
-        setTimeout(function() {
-          //Define a "timer"
-          var stateTimer = null;
 
-          //Define how often the computer's status should be logged (the default, 5, means every 5th minute)
-          var logInterval = 5;
-          //The current number (step) of sequential checks
-          var currentStep = 1;
-          //Whether or not the status should be logged
-          var shouldLog = false;
+        //Check to see if there is an ip configured
+        if(this.ip){
+          //Wait 30 seconds to give the computer some time
+          setTimeout(function() {
+            //Define a "timer"
+            var stateTimer = null;
 
-          //Start the timer which checks the computer every 30 seconds
-          stateTimer = setInterval(function() {
-            //Up currentStep by one
-            currentStepp++;
+            //Define how often the computer's status should be logged (the default, 5, means every 5th minute)
+            var logInterval = 5;
+            //The current number (step) of sequential checks
+            var currentStep = 1;
+            //Whether or not the status should be logged
+            var shouldLog = false;
 
-            //Check if the step has surpassed the wanted log interval
-            if(currentStep >= logInterval){
-              //Tell the state checker to log
-              log = true;
-              //Reset the number of checks
-              currentStep = 1;
-            }
+            //Start the timer which checks the computer every 30 seconds
+            stateTimer = setInterval(function() {
+              //Up currentStep by one
+              currentStepp++;
 
-            this.checkState(shouldLog, function(pingError) {
-              //Check if there was an error (the computer was unreachable)
-              if(pingError){
-                //Stop checking the computer's status by stopping the timer
-                clearInterval(stateTimer);
-
-                //Turn the switch off
-                this._service.setCharacteristic(Characteristic.On, false);
+              //Check if the step has surpassed the wanted log interval
+              if(currentStep >= logInterval){
+                //Tell the state checker to log
+                log = true;
+                //Reset the number of checks
+                currentStep = 1;
               }
-            }.bind(this));
-          }).bind(this), 30 * 1000);
-        }.bind(this), 30 * 1000);
+
+              this.checkState(shouldLog, function(pingError) {
+                //Check if there was an error (the computer was unreachable)
+                if(pingError){
+                  //Stop checking the computer's status by stopping the timer
+                  clearInterval(stateTimer);
+
+                  //Turn the switch off
+                  this._service.setCharacteristic(Characteristic.On, false);
+                }
+              }.bind(this));
+            }).bind(this), 30 * 1000);
+          }.bind(this), 30 * 1000);
+        } else {
+          //Wait 30 seconds to give the computer some time
+          setTimeout(function() {
+            //Turn the switch off
+            this._service.setCharacteristic(Characteristic.On, false);
+          }
+        }
       }
     }.bind(this));
   }

@@ -1,4 +1,4 @@
-# Wake on Lan Plugin for Homebridge
+# Wake on Lan plugin for Homebridge
 ### Turn your computer on through Siri
 ***
 
