@@ -43,6 +43,11 @@ function Computer(log, config) {
   this._service = new Service.Switch(this.name);
   //Handle what happens when the switch is supposed to be turned on
   this._service.getCharacteristic(Characteristic.On).on('set', this._setOn.bind(this));
+
+  //Wait 30 seconds before starting to check the computer
+  setTimeout(function() {
+    this.startChecking();
+  }.bind(this), 30 * 1000);
 }
 
 //Function to retrieve the services that the plugin is capabel of - part of the homebridge plugin ecosystem
@@ -65,59 +70,74 @@ Computer.prototype._setOn = function(on, callback) {
       } else {
         //Log that the packets were sent
         this.log("Packets sent");
-
-        //Check to see if there is an ip configured
-        if(this.ip){
-          //Wait 30 seconds to give the computer some time
-          setTimeout(function() {
-            //Define a "timer"
-            var stateTimer = null;
-
-            //Define how often the computer's status should be logged (the default, 5, means every 5th minute)
-            var logInterval = 5;
-            //The current number (step) of sequential checks
-            var currentStep = 1;
-            //Whether or not the status should be logged
-            var shouldLog = false;
-
-            //Start the timer which checks the computer every 30 seconds
-            stateTimer = setInterval(function() {
-              //Up currentStep by one
-              currentStepp++;
-
-              //Check if the step has surpassed the wanted log interval
-              if(currentStep >= logInterval){
-                //Tell the state checker to log
-                log = true;
-                //Reset the number of checks
-                currentStep = 1;
-              }
-
-              this.checkState(shouldLog, function(pingError) {
-                //Check if there was an error (the computer was unreachable)
-                if(pingError){
-                  //Stop checking the computer's status by stopping the timer
-                  clearInterval(stateTimer);
-
-                  //Turn the switch off
-                  this._service.setCharacteristic(Characteristic.On, false);
-                }
-              }.bind(this));
-            }).bind(this), 30 * 1000);
-          }.bind(this), 30 * 1000);
-        } else {
-          //Wait 30 seconds to give the computer some time
-          setTimeout(function() {
-            //Turn the switch off
-            this._service.setCharacteristic(Characteristic.On, false);
-          }
-        }
       }
     }.bind(this));
   }
 
   //Tell homebridge that the plugin is done progressing the event
   callback();
+}
+
+//Function to start checking whether the device is up or not
+Computer.prototype.startChecking = function() {
+  //Check to see if there is an ip configured
+  if(this.ip){
+    //Define a "timer"
+    var stateTimer = null;
+
+    //Define how often the computer's status should be logged (the default, 5, means every 5th minute)
+    var logInterval = 5;
+    //The current number (step) of sequential checks
+    var currentStep = 1;
+    //Whether or not the status should be logged
+    var shouldLog = false;
+
+    //Define how many failed checks is tolerated before switching the switch off
+    var maxAttempts = 2;
+    //The current number of sequential failed checks
+    var failedAttempts = 0;
+
+    //Start the timer which checks the computer every 30 seconds
+    stateTimer = setInterval(function() {
+      //Up currentStep by one
+      currentStep++;
+
+      //Check if the step has surpassed the wanted log interval
+      if(currentStep >= logInterval){
+        //Tell the state checker to log
+        log = true;
+        //Reset the number of checks
+        currentStep = 1;
+      } else {
+        //Don't log
+        log = false;
+      }
+
+      //Check the current state of the computer
+      this.checkState(shouldLog, function(pingError) {
+        //Check if there was an error (the computer was unreachable)
+        if(pingError){
+          //Up failedAttempts by one
+          failedAttempts++;
+
+          //Check if the amount of failed attempts is untolerated
+          if(failedAttempts >= maxAttempts){
+            //Reset the failed attempts
+            failedAttempts = 0;
+
+            //Turn the switch off
+            this._service.setCharacteristic(Characteristic.On, false);
+          }
+        }
+      }.bind(this));
+    }).bind(this), 30 * 1000);
+  } else {
+    //Wait 30 seconds to give the computer some time
+    setTimeout(function() {
+      //Turn the switch off
+      this._service.setCharacteristic(Characteristic.On, false);
+    }
+  }
 }
 
 //Function that checks the computer to see if it's turned on
