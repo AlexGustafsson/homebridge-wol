@@ -16,6 +16,7 @@
   "author": "Alex Gustafsson",
   "license": "ISC",
   "dependencies": {
+    "net-ping": "^1.1.12",
     "wake_on_lan": "0.0.4"
   },
   "engines": {
