@@ -19,7 +19,7 @@ module.exports = function(homebridge) {
 
   //Register the plugin as an accessory "Computer" of type Computer - part of the homebridge plugin ecosystem
   homebridge.registerAccessory("homebridge-wol", "Computer", Computer);
-}
+};
 
 //Computer class
 function Computer(log, config) {
@@ -133,7 +133,7 @@ Computer.prototype.startChecking = function() {
           }
         }
       }.bind(this));
-    }).bind(this), 30 * 1000);
+    }.bind(this), 30 * 1000);
   } else {
     //Wait 30 seconds to give the computer some time
     setTimeout(function() {
