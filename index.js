@@ -1,175 +1,167 @@
 "use strict";
 
-//Require the wake on lan utility package
-var wol = require("wake_on_lan");
+var wol     = require("wake_on_lan")
+  , ping    = require("net-ping")
+  , exec    = require('child_process').exec
+  , Service, Characteristic;
 
-//Require the net ping utility package
-var ping = require("net-ping");
 
-var Service, Characteristic;
 
-//Export homebridge plugin
-module.exports = function(homebridge) {
-
-  //Determine the service - part of the homebridge plugin ecosystem
+module.exports = function (homebridge) {
   Service = homebridge.hap.Service;
-
-  //Determine charachteristics (i.e. switch, lamp etc.) - part of the homebridge plugin ecosystem
   Characteristic = homebridge.hap.Characteristic;
-
-  //Register the plugin as an accessory "Computer" of type Computer - part of the homebridge plugin ecosystem
   homebridge.registerAccessory("homebridge-wol", "Computer", Computer);
 };
 
-//Computer class
+
+
 function Computer(log, config) {
-  //The log to which the plugin writes debug messages - part of homebridge plugin ecosystem
-  this.log = log;
+    var service           = new Service.Switch(config.name)
+      , pingInterval      = 1000 * (config.pingInterval || 5)
+      , wakeGraceTime     = 1000 * (config.wakeGraceTime || 30)
+      , shutdownGraceTime = 1000 * (config.shutdownGraceTime || 15)
+      , isOnline          = false
+      , self              = this;
 
-  //The name of the computer, used for ease of access as well as Siri implementations
-  this.name = config.name;
+    var pinger = new Pinger(config.ip, pingInterval, function(state) {
+            this.setOnline(state);
+    }.bind(this), log).start();
 
-  //The mac address of the computer, used to create a "magic package" for WoL
-  this.mac = config.mac;
 
-  //The ip address of the computer, used to ping the machine to check if it's turned on or not. Currently only supports ipv4
-  this.ip = config.ip;
+    service.getCharacteristic(Characteristic.On)
+        .on('set', function (newValue, callback) {
+                var currentValue = service.getCharacteristic(Characteristic.On).getValue();
 
-  //Create a session which can be used to ping the device - part of the net-ping package
-  if(this.ip)
-    this._session = ping.createSession();
+                if (currentValue !== newValue) {
+                    log('Set value for %s from %s to %s', config.name, currentValue, newValue);
 
-  //Make the computer a "switch" which can be on or off - part of the homebridge plugin ecosystem
-  this._service = new Service.Switch(this.name);
-  //Handle what happens when the switch is supposed to be turned on
-  this._service.getCharacteristic(Characteristic.On).on('set', this._setOn.bind(this));
+                    if (newValue) {
+                        log('Calling wake');
+                        wake();
+                        log('suspend pinger');
+                        pinger.suspend(wakeGraceTime);
+                        log('done');
+                    }
+                    else {
+                        shutdown();
+                        pinger.suspend(shutdownGraceTime);
+                    }
 
-  //Wait 30 seconds before starting to check the computer
-  setTimeout(function() {
-    this.startChecking();
-  }.bind(this), 30 * 1000);
-}
+                    this.setOnline(newValue);
+                }
 
-//Function to retrieve the services that the plugin is capabel of - part of the homebridge plugin ecosystem
-Computer.prototype.getServices = function() {
-  return [this._service];
-}
+                callback(null);
+        }.bind(this));
 
-//Function which handles what happens when the switch is supposed to be turned on
-Computer.prototype._setOn = function(on, callback) {
-  //If the new state is 'on'
-  if(on){
-    //Send magic packages to the computer
-    wol.wake(this.mac, function(error) {
-      //If an error occured when sending the packages
-      if (error) {
-        //Turn the switch off
-        this._service.setCharacteristic(Characteristic.On, false);
-        //Log error
-        this.log("Error when sending packets", error);
-      } else {
-        //Log that the packets were sent
-        this.log("Packets sent");
-      }
-    }.bind(this));
-  }
 
-  //Tell homebridge that the plugin is done progressing the event
-  callback();
-}
+    service.getCharacteristic(Characteristic.On)
+        .on('get', function (callback) {
+                var online = this.getOnline();
+                log('Call get for %s, return %s', config.ip, online);
+                callback(null, online);
+        }.bind(this));
 
-//Function to start checking whether the device is up or not
-Computer.prototype.startChecking = function() {
-  //Check to see if there is an ip configured
-  if(this.ip){
-    //Define a "timer"
-    var stateTimer = null;
 
-    //Define how often the computer's status should be logged (the default, 5, means every 5th minute)
-    var logInterval = 5;
-    //The current number (step) of sequential checks
-    var currentStep = 1;
-    //Whether or not the status should be logged
-    var shouldLog = false;
+    function wake () {
+            log('Attempting to wake %s (%s)', config.ip, config.mac);
+            self.setOnline(true);
 
-    //Define how many failed checks is tolerated before switching the switch off
-    var maxAttempts = 2;
-    //The current number of sequential failed checks
-    var failedAttempts = 0;
+            wol.wake(config.mac, function (error) {
+                    if (error) {
+                        log('An error occured while waking %s (%s): %s',
+                            config.ip, config.mac, error);
+                    }
+                    self.setOnline(!error);
+            });
+    };
 
-    //Start the timer which checks the computer every 30 seconds
-    stateTimer = setInterval(function() {
-      //Up currentStep by one
-      currentStep++;
 
-      //Check if the step has surpassed the wanted log interval
-      if(currentStep >= logInterval){
-        //Tell the state checker to log
-        log = true;
-        //Reset the number of checks
-        currentStep = 1;
-      } else {
-        //Don't log
-        log = false;
-      }
+    function shutdown () {
+            if (config.shutdownCommand) {
+                log('Shutting down %s: %s', config.ip, config.shutdownCommand);
 
-      //Check the current state of the computer
-      this.checkState(shouldLog, function(pingError) {
-        //Check if there was an error (the computer was unreachable)
-        if(pingError){
-          //Up failedAttempts by one
-          failedAttempts++;
-
-          //Check if the amount of failed attempts is untolerated
-          if(failedAttempts >= maxAttempts){
-            //Reset the failed attempts
-            failedAttempts = 0;
-
-            //Log the event
-            this.log("The computer is most likely off - switching off");
-
-            //Turn the switch off
-            this._service.setCharacteristic(Characteristic.On, false);
-          }
-        }
-      }.bind(this));
-    }.bind(this), 30 * 1000);
-  } else {
-    //Wait 30 seconds to give the computer some time
-    setTimeout(function() {
-      //Turn the switch off
-      this._service.setCharacteristic(Characteristic.On, false);
-    }.bind(this), 30 * 1000);
-  }
-}
-
-//Function that checks the computer to see if it's turned on
-Computer.prototype.checkState = function(shouldLog, callback) {
-  //Ping the computer
-  this.session.pingHost(this.ip, function(error){
-    //If an error occured when checking the machine's current state
-    if(error){
-      //If the computer is not awake
-      if(error instanceof ping.RequestTimedOutError) {
-        //Tell the calling method that the device is unreachable
-        callback(error);
-
-        //Log that the computer is no longer active
-        this.log("The computer " + this.ip + " is no longer active");
-      } else {
-        //Tell the calling method that an error occured
-        callback(error);
-
-        //Log the error
-        this.log(JSON.stringify(error));
-      }
-    } else {
-      //Tell the calling method that the computer is turned on
-      callback(null);
-
-      //Check to see if the event should be logged
-      if(shouldLog)
-        this.log("The computer " + this.ip + " is active");
+                exec(config.shutdownCommand, function (error, stdout, stderr) {
+                        log('ERROR: %s', error);
+                        self.setOnline(!error);
+                });
+            }
     }
-  }.bind(this));
+
+
+
+    this.getServices = function () {
+            return [service];
+    };
+
+    this.setOnline = function (newState) {
+        var online = this.getOnline();
+        if (newState !== online) {
+            log('Updating state for %s %s -> %s', config.ip, online, newState);
+            isOnline = newState;
+            service.getCharacteristic(Characteristic.On).getValue();
+        }
+    };
+
+    this.getOnline = function () {
+        return isOnline;
+    };
+
+    return this;
+}
+
+
+function Pinger (ip, interval, callback, log) {
+    var running     = false
+      , pingSession = ping.createSession()
+      , pingTimer, resumeTimer;
+
+    var log = log || function () {};
+
+
+    function run () {
+            if (running) {
+                return;
+            }
+
+            log('Pinging %s', ip);
+
+            running = true;
+            pingSession.pingHost(ip, function (error) {
+                    callback(!error);
+                    running = false;
+            });
+    }
+
+
+    return {
+        start: function () {
+                this.stop();
+                log('Starting timer on %dms interval for %s.', interval, ip);
+                pingTimer = setInterval(run, interval);
+                return this;
+        },
+
+        stop: function () {
+                if (pingTimer) {
+                    log('Stopping the current timer for %s.', ip);
+                    pingTimer = clearInterval(pingTimer);
+                }
+
+                return this;
+        },
+
+        suspend: function (until) {
+                this.stop();
+
+                if (resumeTimer) {
+                    log('Cancel currently running resume timer for %s', ip);
+                    resumeTimer = clearInterval(resumeTimer);
+                }
+
+                log('Setting resume timer for %s for %dms', ip, until);
+                resumeTimer = setTimeout(this.start.bind(this), until);
+
+                return this;
+        }
+    };
 }

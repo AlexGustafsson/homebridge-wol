@@ -26,7 +26,11 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
     {
       "accessory": "Computer",
       "name": "My Macbook",
-      "mac": "<mac-address>"
+      "mac": "<mac-address>",
+      "pingInterval": 45,
+      "wakeGraceTime": 90,
+      "shutdownGraceTime": 15,
+      "shutdownCommand": "ssh 192.168.1.1 sudo shutdown -h now"
     }
 ]
 ```
@@ -39,6 +43,11 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
 | name      | The name of the computer - used in HomeKit apps as well as Siri | Yes      |
 | mac       | The computer's MAC address - used to send Magic Packets         | Yes      |
 | ip        | The IPv4 address of the computer - used to check current status | No       |
+| pingInterval      | Ping interval in seconds, only used if `ip` is set, default `25`                      | No       |
+| wakeGraceTime     | Number of seconds to wait after wake-up before checking online status, default `30`   |  No       |
+| shutdownGraceTime | Number of seconds to wait after shutdown before checking offline status, default `15` | No       |
+| shutdownCommand   | Command to run in order to shut down the remote mchine                                | No       |
+
 
 ### Usage
 
