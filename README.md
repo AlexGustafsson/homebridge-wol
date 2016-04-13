@@ -1,5 +1,5 @@
 # Wake on Lan plugin for Homebridge
-### Turn your computer on through Siri
+### Turn your computer on and off through Siri
 ***
 
 ### Setting up
@@ -13,10 +13,20 @@ npm install -g homebridge-wol
 
 ###### Configuration
 
-To make Homebridge aware of the new plugin, you will have to add it to your configuration usually found in `/root/.homebridge/config.json`. Somewhere inside that file you should see a key named `accessories`. This is where you can add your computer as shown here:
+To make Homebridge aware of the new plugin, you will have to add it to your configuration usually found in `/root/.homebridge/config.json` or `/home/username/.homebridge/config.json` If the file does not exist, you may [create it](https://github.com/nfarina/homebridge/blob/master/config-sample.json). Somewhere inside that file you should see a key named `accessories`. This is where you can add your computer as shown here:
 
  ```json
 "accessories": [
+    {
+      "accessory": "Computer",
+      "name": "My Macbook",
+      "mac": "<mac-address>",
+      "ip": "192.168.1.51",
+      "pingInterval": 45,
+      "wakeGraceTime": 90,
+      "shutdownGraceTime": 15,
+      "shutdownCommand": "ssh 192.168.1.51 sudo shutdown -h now"
+    },
     {
       "accessory": "Computer",
       "name": "My Gaming Rig",
@@ -25,15 +35,17 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
     },
     {
       "accessory": "Computer",
-      "name": "My Macbook",
+      "name": "Raspberry Pi",
       "mac": "<mac-address>",
+      "ip": "192.168.1.251",
       "pingInterval": 45,
       "wakeGraceTime": 90,
       "shutdownGraceTime": 15,
-      "shutdownCommand": "ssh 192.168.1.1 sudo shutdown -h now"
+      "shutdownCommand": "sshpass -p 'raspberry' ssh -oStrictHostKeyChecking=no pi@192.168.1.251 sudo shutdown -h now"
     }
 ]
 ```
+___notice___: _the Raspberry Pi example uses the "sshpass" package to sign in on the remote host. The "-oStrictHostKeyChecking=no" parameter permits any key that the host may present. You should be using ssh keys to authenticate yourself._
 
 ###### Options
 
@@ -46,7 +58,7 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
 | pingInterval      | Ping interval in seconds, only used if `ip` is set, default `25`                      | No       |
 | wakeGraceTime     | Number of seconds to wait after wake-up before checking online status, default `30`   |  No       |
 | shutdownGraceTime | Number of seconds to wait after shutdown before checking offline status, default `15` | No       |
-| shutdownCommand   | Command to run in order to shut down the remote mchine                                | No       |
+| shutdownCommand   | Command to run in order to shut down the remote machine                               | No       |
 
 
 ### Usage
