@@ -122,8 +122,6 @@ function Pinger(ip, interval, callback, log) {
       return;
     }
 
-    log('Pinging %s', ip);
-
     running = true;
     pingSession.pingHost(ip, function(error) {
       callback(!error);
