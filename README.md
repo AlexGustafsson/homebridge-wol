@@ -11,6 +11,8 @@ To install the plugin, head over to the machine with Homebridge set up and run
 npm install -g homebridge-wol
 ```
 
+_Note, homebridge-wol requires root permissions due to the use of pinging and magic packages. Start homebridge with sudo: `sudo homebridge` or change permissions accordingly._
+
 ###### Configuration
 
 To make Homebridge aware of the new plugin, you will have to add it to your configuration usually found in `/root/.homebridge/config.json` or `/home/username/.homebridge/config.json` If the file does not exist, you may [create it](https://github.com/nfarina/homebridge/blob/master/config-sample.json). Somewhere inside that file you should see a key named `accessories`. This is where you can add your computer as shown here:
