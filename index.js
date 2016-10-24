@@ -67,10 +67,8 @@ function Computer(log, config) {
     self.setOnline(true);
 
     wol.wake(config.mac, function(error) {
-      if (error) {
-        log('An error occured while waking %s (%s): %s',
-          config.ip, config.mac, error);
-      }
+      if (error)
+        log('An error occured while waking %s (%s): %s', config.ip, config.mac, error);
       self.setOnline(!error);
     });
   };
@@ -81,7 +79,8 @@ function Computer(log, config) {
       log('Attempting to shut down %s: %s', config.ip, config.shutdownCommand);
 
       exec(config.shutdownCommand, function(error, stdout, stderr) {
-        log('Error while trying to shut down %s: %s', config.ip, error);
+        if(error)
+          log('Error while trying to shut down %s: %s', config.ip, error);
         self.setOnline(!error);
       });
     }
@@ -118,9 +117,8 @@ function Pinger(ip, interval, callback, log) {
 
 
   function run() {
-    if (running) {
+    if (running)
       return;
-    }
 
     running = true;
     pingSession.pingHost(ip, function(error) {
