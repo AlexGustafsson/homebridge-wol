@@ -1,21 +1,15 @@
 "use strict";
 
-
-
 var wol = require("wake_on_lan"),
   ping = require("net-ping"),
   exec = require('child_process').exec,
   Service, Characteristic;
-
-
 
 module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
   homebridge.registerAccessory("homebridge-wol", "Computer", Computer);
 };
-
-
 
 function Computer(log, config) {
   var service = new Service.Switch(config.name),
@@ -28,7 +22,6 @@ function Computer(log, config) {
   var pinger = new Pinger(config.ip, pingInterval, function(state) {
     this.setOnline(state);
   }.bind(this), log).start();
-
 
   service.getCharacteristic(Characteristic.On)
     .on('set', function(newValue, callback) {
@@ -53,14 +46,12 @@ function Computer(log, config) {
       callback();
     }.bind(this));
 
-
   service.getCharacteristic(Characteristic.On)
     .on('get', function(callback) {
       var online = this.getOnline();
       log('Call get for %s, return %s', config.ip, online);
       callback(null, online);
     }.bind(this));
-
 
   function wake() {
     log('Attempting to wake %s (%s)', config.ip, config.mac);
@@ -73,7 +64,6 @@ function Computer(log, config) {
     });
   };
 
-
   function shutdown() {
     if (config.shutdownCommand) {
       log('Attempting to shut down %s: %s', config.ip, config.shutdownCommand);
@@ -85,7 +75,6 @@ function Computer(log, config) {
       });
     }
   }
-
 
   this.getServices = function() {
     return [service];
@@ -115,7 +104,6 @@ function Pinger(ip, interval, callback, log) {
 
   var log = log || function() {};
 
-
   function run() {
     if (running)
       return;
@@ -126,7 +114,6 @@ function Pinger(ip, interval, callback, log) {
       running = false;
     });
   }
-
 
   return {
     start: function() {
