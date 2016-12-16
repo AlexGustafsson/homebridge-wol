@@ -118,14 +118,14 @@ function Pinger(config, interval, callback, log) {
   return {
     start: function() {
       this.stop();
-      log('Starting timer on %dms interval for %s(%s)', interval, config.name, config.ip);
+      log('Starting ping timer on %dms interval for %s(%s)', interval, config.name, config.ip);
       pingTimer = setInterval(run, interval);
       return this;
     },
 
     stop: function() {
       if (pingTimer) {
-        log('Stopping the current grace timer for %s(%s)', config.name, config.ip);
+        log('Stopping the current ping timer for %s(%s)', config.name, config.ip);
         pingTimer = clearInterval(pingTimer);
       }
 
@@ -136,7 +136,7 @@ function Pinger(config, interval, callback, log) {
       this.stop();
 
       if (resumeTimer) {
-        log('Cancel currently running grace timer for %s(%s)', config.name, config.ip);
+        log('Canceling currently running grace timer for %s(%s)', config.name, config.ip);
         resumeTimer = clearInterval(resumeTimer);
       }
 
