@@ -1,13 +1,17 @@
 {
   "name": "homebridge-wol",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A Wake on Lan plugin for Homebridge: https://github.com/nfarina/homebridge",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "xo"
   },
   "keywords": [
-    "homebridge-plugin"
+    "homebridge-plugin",
+    "wake on lan",
+    "home automation",
+    "wol",
+    "automation"
   ],
   "repository": {
     "type": "git",
@@ -23,10 +27,29 @@
   "license": "ISC",
   "dependencies": {
     "net-ping": "^1.1.12",
+    "ping": "^0.2.1",
     "wake_on_lan": "0.0.4"
   },
   "engines": {
     "node": ">=0.12.0",
     "homebridge": ">=0.2.0"
+  },
+  "devDependencies": {
+    "xo": "^0.17.1"
+  },
+  "xo": {
+    "space": 2,
+    "rules": {
+      "curly": [
+        "error",
+        "multi-or-nest"
+      ],
+      "no-use-before-define": [
+        "error",
+        {
+          "classes": false
+        }
+      ]
+    }
   }
 }

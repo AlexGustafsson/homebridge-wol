@@ -6,12 +6,21 @@
 
 ###### Installing
 
-To install the plugin, head over to the machine with Homebridge set up and run
+To install the plugin, head over to the machine with Homebridge set up and run the following commands:
 ```
-npm install -g homebridge-wol
+# Download the repository
+git clone https://github.com/AlexGustafsson/homebridge-wol.git
+# Navigate to the repository
+cd homebridge-wol
+# Use beta branch
+git checkout beta
+# Temporately install globally
+npm link
 ```
-
-_Note, homebridge-wol requires root permissions due to the use of pinging and magic packages. Start homebridge with sudo: `sudo homebridge` or change permissions accordingly._
+To uninstall run the following command from within the repository directory:
+```
+npm unlink
+```
 
 ###### Configuration
 
@@ -54,16 +63,18 @@ ___notice___: _the Raspberry Pi example uses the "sshpass" package to sign in on
 | Key       | Description                                                     | Required |
 | --------- | --------------------------------------------------------------- | ---------|
 | accessory | The type of accessory - has to be "Computer"                    | Yes      |
-| name      | The name of the computer - used in HomeKit apps as well as Siri | Yes      |
-| mac       | The computer's MAC address - used to send Magic Packets         | Yes      |
+| name      | The name of the computer - used in HomeKit apps as well as Siri, default `My Computer` | Yes      |
+| mac       | The computer's MAC address - used to send Magic Packets         | No       |
 | ip        | The IPv4 address of the computer - used to check current status | No       |
 | pingInterval      | Ping interval in seconds, only used if `ip` is set, default `25`                      | No       |
 | wakeGraceTime     | Number of seconds to wait after wake-up before checking online status, default `30`   |  No       |
 | shutdownGraceTime | Number of seconds to wait after shutdown before checking offline status, default `15` | No       |
 | shutdownCommand   | Command to run in order to shut down the remote machine                               | No       |
+| log | Whether or not the plugin should log status messages, default `true` | No |
 
+_Note, although neither mac or ip are required, at last one is needed for the plugin to be functional. One can however leave out mac and only use ip to be able to check the status of the device without being able to turn it on._
 
-### Usage
+### Usage (pre iOS 10)
 
 To use this package you need a HomeKit-enabled app. When you've gone through the setup there should be a switch showing in the app with the name of your computer. If the switch is off and you tap it, your computer will be turned on. However, you cannot turn off your computer with this plugin, so by switching the switch off - nothing will happen and it will soon go back to being on. Whenever the computer shuts down the switch will be automatically switched off.
 
@@ -74,3 +85,26 @@ iDevices is a great app to configure everything HomeKit related. It offers great
 
 #### [Beam](https://itunes.apple.com/us/app/beam-elevate-your-home/id1038439712?mt=8)
 Beam is a stylish, minimalistic approach to a home remote. Whilst not offering the configurability of iDevices, Beam is targeting the everyday use with a great user experience.
+
+### Contibution
+
+Any contribution is welcome. If you're not able to code it yourself, perhaps someone else is - so post an issue if there's anything on your mind.
+
+###### Development
+
+Clone the repository:
+```
+git clone https://github.com/AlexGustafsson/homebridge-wol.git && cd homebridge-wol
+```
+
+Set up for development:
+```
+npm install && npm link
+```
+
+Now follow the configuration of homebridge / the plugin as per usual.
+
+Follow the conventions enforced:
+```
+npm test
+```
