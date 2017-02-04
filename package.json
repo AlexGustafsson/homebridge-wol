@@ -26,7 +26,6 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "net-ping": "^1.1.12",
     "ping": "^0.2.1",
     "wake_on_lan": "0.0.4"
   },
