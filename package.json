@@ -41,7 +41,8 @@
     "rules": {
       "curly": [
         "error",
-        "multi-or-nest"
+        "multi",
+        "consistent"
       ],
       "no-use-before-define": [
         "error",
