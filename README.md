@@ -65,7 +65,7 @@ ___notice___: _the Raspberry Pi example uses the "sshpass" package to sign in on
 
 ### Usage
 
-To use this package you need a HomeKit-enabled app. When you've gone through the setup there should be a switch showing in the app with the name of your computer. If the computer has been configured properly, it will turn on when the switch is flicked. if there is configuration to support it (see the above table), the device will turn off. Note, even though we use the word "computer" throughout the docs, any device should be supported.
+To use this package you need a HomeKit-enabled app. When you've gone through the setup there should be a switch showing in the app with the name of your computer. If the computer has been configured properly, it will turn on when the switch is flicked. If there is configuration to support it (see the above table), the device will turn off. Note, even though we use the word "computer" throughout the docs, any device should be supported.
 
 If you haven't yet found an applicable app, I recommend the following:
 
