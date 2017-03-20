@@ -76,7 +76,7 @@ _Note, although neither mac or ip are required, at last one is needed for the pl
 
 ### Usage (pre iOS 10)
 
-To use this package you need a HomeKit-enabled app. When you've gone through the setup there should be a switch showing in the app with the name of your computer. If the switch is off and you tap it, your computer will be turned on. However, you cannot turn off your computer with this plugin, so by switching the switch off - nothing will happen and it will soon go back to being on. Whenever the computer shuts down the switch will be automatically switched off.
+To use this package you need a HomeKit-enabled app. When you've gone through the setup there should be a switch showing in the app with the name of your computer. If the computer has been configured properly, it will turn on when the switch is flicked. If there is configuration to support it (see the above table), the device will turn off. Note, even though we use the word "computer" throughout the docs, any device should be supported.
 
 If you haven't yet found an applicable app, I recommend the following:
 
