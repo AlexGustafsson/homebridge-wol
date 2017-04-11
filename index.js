@@ -1,11 +1,11 @@
 'use strict';
 
-const getComputer = require('./lib/computer');
+const getNetworkDevice = require('./lib/network-device');
 
 function setup(homebridge) {
-  const Computer = getComputer(homebridge.hap);
+  const NetworkDevice = getNetworkDevice(homebridge.hap);
 
-  homebridge.registerAccessory('homebridge-wol', 'Computer', Computer);
+  homebridge.registerAccessory('homebridge-wol', 'NetworkDevice', NetworkDevice);
 }
 
 module.exports = setup;

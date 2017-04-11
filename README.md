@@ -1,6 +1,8 @@
 # Wake on Lan plugin for Homebridge
-### Turn your computer on and off through Siri
+### Turn your PCs, laptops, servers and more on and off through Siri
 ***
+
+
 
 ### Setting up
 
@@ -29,7 +31,7 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
  ```json
 "accessories": [
     {
-      "accessory": "Computer",
+      "accessory": "NetworkDevice",
       "name": "My Macbook",
       "mac": "<mac-address>",
       "ip": "192.168.1.51",
@@ -39,13 +41,13 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "shutdownCommand": "ssh 192.168.1.51 sudo shutdown -h now"
     },
     {
-      "accessory": "Computer",
+      "accessory": "NetworkDevice",
       "name": "My Gaming Rig",
       "mac": "<mac-address>",
       "ip": "192.168.1.151"
     },
     {
-      "accessory": "Computer",
+      "accessory": "NetworkDevice",
       "name": "Raspberry Pi",
       "mac": "<mac-address>",
       "ip": "192.168.1.251",
@@ -53,6 +55,12 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "wakeGraceTime": 90,
       "shutdownGraceTime": 15,
       "shutdownCommand": "sshpass -p 'raspberry' ssh -oStrictHostKeyChecking=no pi@192.168.1.251 sudo shutdown -h now"
+    },
+    {
+      "accessory": "NetworkDevice",
+      "name": "My NAS",
+      "ip": "192.168.1.148",
+      "log": false
     }
 ]
 ```
@@ -62,10 +70,10 @@ ___notice___: _the Raspberry Pi example uses the "sshpass" package to sign in on
 
 | Key       | Description                                                     | Required |
 | --------- | --------------------------------------------------------------- | ---------|
-| accessory | The type of accessory - has to be "Computer"                    | Yes      |
-| name      | The name of the computer - used in HomeKit apps as well as Siri, default `My Computer` | Yes      |
-| mac       | The computer's MAC address - used to send Magic Packets         | No       |
-| ip        | The IPv4 address of the computer - used to check current status | No       |
+| accessory | The type of accessory - has to be "NetworkDevice"               | Yes      |
+| name      | The name of the device - used in HomeKit apps as well as Siri, default `My Computer` | Yes      |
+| mac       | The device's MAC address - used to send Magic Packets         | No       |
+| ip        | The IPv4 address of the device - used to check current status | No       |
 | pingInterval      | Ping interval in seconds, only used if `ip` is set, default `25`                      | No       |
 | wakeGraceTime     | Number of seconds to wait after wake-up before checking online status, default `30`   |  No       |
 | shutdownGraceTime | Number of seconds to wait after shutdown before checking offline status, default `15` | No       |
@@ -76,7 +84,7 @@ _Note, although neither mac or ip are required, at last one is needed for the pl
 
 ### Usage (pre iOS 10)
 
-To use this package you need a HomeKit-enabled app. When you've gone through the setup there should be a switch showing in the app with the name of your computer. If the computer has been configured properly, it will turn on when the switch is flicked. If there is configuration to support it (see the above table), the device will turn off. Note, even though we use the word "computer" throughout the docs, any device should be supported.
+To use this package you need a HomeKit-enabled app. When you've gone through the setup there should be a switch showing in the app with the name of your device. If the device has been configured properly, it will turn on when the switch is flicked. If there is configuration to support it (see the above table), the device will turn off.
 
 If you haven't yet found an applicable app, I recommend the following:
 
