@@ -64,6 +64,8 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
     }
 ]
 ```
+__note__: _the accessory name has recently been renamed to "NetworkDevice" to address [this issue](https://github.com/AlexGustafsson/homebridge-wol/issues/17)_
+
 ___notice___: _the Raspberry Pi example uses the "sshpass" package to sign in on the remote host. The "-oStrictHostKeyChecking=no" parameter permits any key that the host may present. You should be using ssh keys to authenticate yourself._
 
 ###### Options
