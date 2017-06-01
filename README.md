@@ -16,7 +16,7 @@ git clone https://github.com/AlexGustafsson/homebridge-wol.git
 cd homebridge-wol
 # Use beta branch
 git checkout beta
-# Temporately install globally
+# Temporarily install globally
 npm link
 ```
 To uninstall run the following command from within the repository directory:
