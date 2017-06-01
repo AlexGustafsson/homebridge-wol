@@ -2,6 +2,8 @@
 ### Turn your computer on and off through Siri
 ***
 
+> Hey you! Yes you! Would you like to help test the new version of homebridge-wol to ensure stability? Your help is needed. Head over [here](https://github.com/AlexGustafsson/homebridge-wol/issues/13) to start. Thank you! 
+
 ### Setting up
 
 ###### Installing
