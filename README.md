@@ -3,7 +3,7 @@
 ***
 
 
-> Hey you! Yes you! Would you like to help test the new version of homebridge-wol to ensure stability? Your help is needed. Head over [here](https://github.com/AlexGustafsson/homebridge-wol/issues/13) to start. Thank you!
+> Hello! The long-overdue launch of the new homebridge-wol is upon us. If you've been using the package before, re-read this document to make sure you're up to date on breaking changes etc.
 
 ### Setting up
 
@@ -12,17 +12,7 @@
 To install the plugin, head over to the machine with Homebridge set up and run the following commands:
 ```
 # Download the repository
-git clone https://github.com/AlexGustafsson/homebridge-wol.git
-# Navigate to the repository
-cd homebridge-wol
-# Use beta branch
-git checkout beta
-# Temporarily install globally
-npm link
-```
-To uninstall run the following command from within the repository directory:
-```
-npm unlink
+npm install -g homebridge-wol
 ```
 
 ###### Configuration
