@@ -69,11 +69,13 @@ ___notice___: _the Raspberry Pi example uses the "sshpass" package to sign in on
 | name      | The name of the device - used in HomeKit apps as well as Siri, default `My Computer` | Yes      |
 | mac       | The device's MAC address - used to send Magic Packets         | No       |
 | ip        | The IPv4 address of the device - used to check current status | No       |
-| pingInterval      | Ping interval in seconds, only used if `ip` is set, default `25`                      | No       |
-| wakeGraceTime     | Number of seconds to wait after wake-up before checking online status, default `30`   |  No       |
+| pingInterval      | Ping interval in seconds, only used if `ip` is set, default `2`                      | No       |
+| wakeGraceTime     | Number of seconds to wait after wake-up before checking online status, default `45`   |  No       |
 | shutdownGraceTime | Number of seconds to wait after shutdown before checking offline status, default `15` | No       |
 | shutdownCommand   | Command to run in order to shut down the remote machine                               | No       |
 | log | Whether or not the plugin should log status messages, default `true` | No |
+| logPinger | Whether or not the plugin should log ping messages, default `false` | No |
+| timeout | Number of seconds to wait for pinging to finish, default `1` | No |
 
 _Note, although neither mac or ip are required, at last one is needed for the plugin to be functional. One can however leave out mac and only use ip to be able to check the status of the device without being able to turn it on._
 
