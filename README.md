@@ -15,7 +15,7 @@ To install the plugin, head over to the machine with Homebridge set up and run t
 npm install -g homebridge-wol
 ```
 
-_Note, homebridge-wol requires root permissions due to the use of pinging and magic packages. Start homebridge with sudo: `sudo homebridge` or change capabilities accordingly (´setcap cap_net_raw=pe /path/to/bin/node`)._
+_Note: homebridge-wol requires root permissions due to the use of pinging and magic packages. Start homebridge with sudo: `sudo homebridge` or change capabilities accordingly (´setcap cap_net_raw=pe /path/to/bin/node`)._
 
 ###### Configuration
 
@@ -57,9 +57,9 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
     }
 ]
 ```
-__note__: _the accessory name has recently been renamed to "NetworkDevice" to address [this issue](https://github.com/AlexGustafsson/homebridge-wol/issues/17)_
+_Note: the accessory name has recently been renamed to "NetworkDevice" to address [this issue](https://github.com/AlexGustafsson/homebridge-wol/issues/17)_
 
-___notice___: _the Raspberry Pi example uses the "sshpass" package to sign in on the remote host. The "-oStrictHostKeyChecking=no" parameter permits any key that the host may present. You should be using ssh keys to authenticate yourself._
+_Note: the Raspberry Pi example uses the "sshpass" package to sign in on the remote host. The "-oStrictHostKeyChecking=no" parameter permits any key that the host may present. You should be using ssh keys to authenticate yourself._
 
 ###### Options
 
@@ -77,7 +77,7 @@ ___notice___: _the Raspberry Pi example uses the "sshpass" package to sign in on
 | logPinger | Whether or not the plugin should log ping messages, default `false` | No |
 | timeout | Number of seconds to wait for pinging to finish, default `1` | No |
 
-_Note, although neither mac or ip are required, at last one is needed for the plugin to be functional. One can however leave out mac and only use ip to be able to check the status of the device without being able to turn it on._
+_Note: although neither mac or ip are required, at last one is needed for the plugin to be functional. One can however leave out mac and only use ip to be able to check the status of the device without being able to turn it on._
 
 ### Usage (pre iOS 10)
 
