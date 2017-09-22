@@ -15,6 +15,8 @@ To install the plugin, head over to the machine with Homebridge set up and run t
 npm install -g homebridge-wol
 ```
 
+__If you've previously used a version lower than `3.0.0` be sure to change the accessory name to `NetworkDevice` (previously `Computer`). See 'Configuration' below.__
+
 _Note: homebridge-wol requires root permissions due to the use of pinging and magic packages. Start homebridge with sudo: `sudo homebridge` or change capabilities accordingly (´setcap cap_net_raw=pe /path/to/bin/node`)._
 
 ###### Configuration
