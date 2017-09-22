@@ -11,7 +11,7 @@
 
 To install the plugin, head over to the machine with Homebridge set up and run the following commands:
 ```
-# Download the repository
+# Download the module
 npm install -g homebridge-wol
 ```
 
