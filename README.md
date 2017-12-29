@@ -17,7 +17,11 @@ npm install -g homebridge-wol
 
 __If you've previously used a version lower than `3.0.0` be sure to change the accessory name to `NetworkDevice` (previously `Computer`). See 'Configuration' below.__
 
-_Note: homebridge-wol requires root permissions due to the use of pinging and magic packages. Start homebridge with sudo: `sudo homebridge` or change capabilities accordingly (´setcap cap_net_raw=pe /path/to/bin/node`)._
+_Note: homebridge-wol requires extra permissions due to the use of pinging and magic packages. Start homebridge with sudo: `sudo homebridge` or change capabilities accordingly (`setcap cap_net_raw=pe /path/to/bin/node`). Systemd users can add the following lines to the `[Service]` section of homebridge's unit file (or create a drop-in if unit is packaged by your distro) to achieve this in a more secure way:_
+```
+CapabilityBoundingSet=CAP_NET_RAW
+AmbientCapabilities=CAP_NET_RAW
+```
 
 ###### Configuration
 
