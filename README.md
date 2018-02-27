@@ -35,7 +35,8 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "mac": "<mac-address>",
       "ip": "192.168.1.51",
       "pingInterval": 45,
-      "wakeGraceTime": 90,
+      "wakeGraceTime": 10,
+      "wakeCommand": "ssh 192.168.1.51 caffeinate -u -t 300",
       "shutdownGraceTime": 15,
       "shutdownCommand": "ssh 192.168.1.51 sudo shutdown -h now"
     },
@@ -67,6 +68,8 @@ _Note: the accessory name has recently been renamed to "NetworkDevice" to addres
 
 _Note: the Raspberry Pi example uses the "sshpass" package to sign in on the remote host. The "-oStrictHostKeyChecking=no" parameter permits any key that the host may present. You should be using ssh keys to authenticate yourself._
 
+_Note: the Macbook example uses caffeinate in order to keep the computer alive after the initial wake-up. See [this issue](https://github.com/AlexGustafsson/homebridge-wol/issues/30#issuecomment-368733512) for more information._
+
 ###### Options
 
 | Key       | Description                                                     | Required |
@@ -76,7 +79,8 @@ _Note: the Raspberry Pi example uses the "sshpass" package to sign in on the rem
 | mac       | The device's MAC address - used to send Magic Packets         | No       |
 | ip        | The IPv4 address of the device - used to check current status | No       |
 | pingInterval      | Ping interval in seconds, only used if `ip` is set, default `2`                      | No       |
-| wakeGraceTime     | Number of seconds to wait after wake-up before checking online status, default `45`   |  No       |
+| wakeGraceTime     | Number of seconds to wait after wake-up before checking online status and issuing the `wakeCommand`, default `45`   |  No       |
+| wakeCommand | Command to run after initial wake-up, useful for macOS users in need of running `caffeinate` |  No       |
 | shutdownGraceTime | Number of seconds to wait after shutdown before checking offline status, default `15` | No       |
 | shutdownCommand   | Command to run in order to shut down the remote machine                               | No       |
 | log | Whether or not the plugin should log status messages, default `true` | No |
