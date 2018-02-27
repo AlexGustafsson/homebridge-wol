@@ -1,5 +1,3 @@
-'use strict';
-
 const getNetworkDevice = require('./lib/network-device');
 
 function setup(homebridge) {
