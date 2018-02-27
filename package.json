@@ -26,7 +26,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "ping": "^0.2.1",
+    "ping": "^0.2.2",
     "wake_on_lan": "0.0.4"
   },
   "engines": {
@@ -34,7 +34,7 @@
     "homebridge": ">=0.2.0"
   },
   "devDependencies": {
-    "xo": "^0.17.1"
+    "xo": "^0.20.3"
   },
   "xo": {
     "space": 2,
