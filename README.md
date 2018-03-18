@@ -2,7 +2,7 @@
 ### Turn your computer on and off through Siri
 ***
 
-> This is a friendly reminder that you're currently viewing a legacy branch. To get in all the new features, head over [here](https://github.com/AlexGustafsson/homebridge-wol).
+> This is a friendly reminder that you're currently viewing a legacy branch. To get in on all the new features, head over [here](https://github.com/AlexGustafsson/homebridge-wol).
 
 ### Setting up
 
