@@ -10,6 +10,16 @@ Please explain the issue in depth, what you think happened etc.
 * homebridge version:
 * homebridge-wol version:
 
+### Configuration
+My configuration looks like this:
+```
+Please paste your homebridge config.json here
+
+IMPORTANT!
+Remove any mac addresses from the configuration by 
+exchanging them with <mac-address>
+```
+
 ### Log
 When I follow these steps:
 1. Run `DEBUG=* homebridge`
@@ -20,7 +30,7 @@ When I follow these steps:
 
 I get the following log:
 ```
-please paste your log here
+Please paste your log here
 ```
 
 ### Notes
