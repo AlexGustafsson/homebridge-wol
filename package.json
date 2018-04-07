@@ -1,6 +1,6 @@
 {
   "name": "homebridge-wol",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "A Wake on Lan plugin for Homebridge: https://github.com/nfarina/homebridge",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,10 @@
     {
       "name": "Tiemo Kieft",
       "email": "me@isogram.nl"
+    },
+    {
+      "name": "Paul Curry",
+      "email": "github@cr3ation.co.uk"
     }
   ],
   "license": "ISC",
