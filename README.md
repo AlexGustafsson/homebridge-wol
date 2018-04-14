@@ -42,9 +42,10 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
     },
     {
       "accessory": "NetworkDevice",
-      "name": "My Gaming Rig",
+      "name": "My Windows Gaming Rig",
       "mac": "<mac-address>",
-      "ip": "192.168.1.151"
+      "ip": "192.168.1.151",
+      "shutdownCommand": "net rpc shutdown --ipaddress 192.168.1.151 --user username%password
     },
     {
       "accessory": "NetworkDevice",
@@ -69,6 +70,8 @@ _Note: the accessory name has recently been renamed to "NetworkDevice" to addres
 _Note: the Raspberry Pi example uses the "sshpass" package to sign in on the remote host. The "-oStrictHostKeyChecking=no" parameter permits any key that the host may present. You should be using ssh keys to authenticate yourself._
 
 _Note: the Macbook example uses caffeinate in order to keep the computer alive after the initial wake-up. See [this issue](https://github.com/AlexGustafsson/homebridge-wol/issues/30#issuecomment-368733512) for more information._
+
+_Note: the Windows example requires the samba-common package to be installed on the server. If you're on Windows 10 and you're signing in with a Microsoft account, the command should use your local username instead of your Microsoft ID (e-mail)._
 
 ###### Options
 
