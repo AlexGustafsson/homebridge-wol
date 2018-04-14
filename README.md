@@ -45,7 +45,7 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "name": "My Windows Gaming Rig",
       "mac": "<mac-address>",
       "ip": "192.168.1.151",
-      "shutdownCommand": "net rpc shutdown --ipaddress 192.168.1.151 --user username%password
+      "shutdownCommand": "net rpc shutdown --ipaddress 192.168.1.151 --user username%password"
     },
     {
       "accessory": "NetworkDevice",
