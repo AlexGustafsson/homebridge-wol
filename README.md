@@ -71,7 +71,7 @@ _Note: the Raspberry Pi example uses the "sshpass" package to sign in on the rem
 
 _Note: the Macbook example uses caffeinate in order to keep the computer alive after the initial wake-up. See [this issue](https://github.com/AlexGustafsson/homebridge-wol/issues/30#issuecomment-368733512) for more information._
 
-_Note: the Windows example requires the samba-common package to be installed on the server. If you're on Windows 10 and you're signing in with a Microsoft account, the command should use your local username instead of your Microsoft ID (e-mail)._
+_Note: the Windows example requires the samba-common package to be installed on the server. If you're on Windows 10 and you're signing in with a Microsoft account, the command should use your local username instead of your Microsoft ID (e-mail). Also note that you may or may not need to run `net rpc` with `sudo`._
 
 ###### Options
 
