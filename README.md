@@ -74,6 +74,8 @@ _Note: the Macbook example uses caffeinate in order to keep the computer alive a
 
 _Note: the Windows example requires the samba-common package to be installed on the server. If you're on Windows 10 and you're signing in with a Microsoft account, the command should use your local username instead of your Microsoft ID (e-mail). Also note that you may or may not need to run `net rpc` with `sudo`._
 
+_Note: using username and passwords in a command is heavily discouraged as this stores them in the configuration file and may log them to the terminal output and or a log file. Use other authentication methods or environment variables instead._
+
 ###### Options
 
 | Key       | Description                                                     | Required |
