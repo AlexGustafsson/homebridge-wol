@@ -61,7 +61,8 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "accessory": "NetworkDevice",
       "name": "My NAS",
       "ip": "192.168.1.148",
-      "log": false
+      "log": false,
+      "broadcastAddress": "172.16.1.255"
     }
 ]
 ```
@@ -89,6 +90,7 @@ _Note: the Windows example requires the samba-common package to be installed on 
 | log | Whether or not the plugin should log status messages, default `true` | No |
 | logPinger | Whether or not the plugin should log ping messages, default `false` | No |
 | timeout | Number of seconds to wait for pinging to finish, default `1` | No |
+| broadcastAddress | The broadcast address to use when sending the wake on lan packet | No |
 
 _Note: although neither mac or ip are required, at last one is needed for the plugin to be functional. One can however leave out mac and only use ip to be able to check the status of the device without being able to turn it on._
 
