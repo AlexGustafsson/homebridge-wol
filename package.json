@@ -1,6 +1,6 @@
 {
   "name": "homebridge-wol-esxi-support",
-  "version": "3.2.4e",
+  "version": "3.2.5e",
   "description": "A Wake on Lan plugin for Homebridge with ESXi VM support: https://github.com/nfarina/homebridge",
   "main": "index.js",
   "scripts": {
