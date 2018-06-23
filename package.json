@@ -1,7 +1,7 @@
 {
-  "name": "homebridge-wol",
+  "name": "homebridge-wol-esxi-support",
   "version": "3.2.4",
-  "description": "A Wake on Lan plugin for Homebridge: https://github.com/nfarina/homebridge",
+  "description": "A Wake on Lan plugin for Homebridge with ESXi VM support: https://github.com/nfarina/homebridge",
   "main": "index.js",
   "scripts": {
     "test": "xo"
@@ -11,11 +11,12 @@
     "wake on lan",
     "home automation",
     "wol",
-    "automation"
+    "automation",
+    "esxi"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/alexgustafsson/homebridge-wol.git"
+    "url": "git://github.com/xiurobert/homebridge-wol.git"
   },
   "author": "Alex Gustafsson",
   "contributors": [
@@ -26,7 +27,11 @@
     {
       "name": "Paul Curry",
       "email": "github@cr3ation.co.uk"
-    }
+  },
+  {
+      "name": "Robert Xiu",
+      "email": "xiurobert@gmail.com"
+  }
   ],
   "license": "ISC",
   "dependencies": {
