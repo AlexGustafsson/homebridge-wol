@@ -12,12 +12,12 @@
 To install the plugin, head over to the machine with Homebridge set up and run the following commands:
 ```
 # Download the module
-npm install -g homebridge-wol
+npm install -g homebridge-wol-esxi-support
 ```
 
 __If you've previously used a version lower than `3.0.0` be sure to change the accessory name to `NetworkDevice` (previously `Computer`). See 'Configuration' below.__
 
-_Note: homebridge-wol requires extra permissions due to the use of pinging and magic packages. Start homebridge with sudo: `sudo homebridge` or change capabilities accordingly (`setcap cap_net_raw=pe /path/to/bin/node`). Systemd users can add the following lines to the `[Service]` section of homebridge's unit file (or create a drop-in if unit is packaged by your distro) to achieve this in a more secure way:_
+_Note: homebridge-wol-esxi-support requires extra permissions due to the use of pinging and magic packages. Start homebridge with sudo: `sudo homebridge` or change capabilities accordingly (`setcap cap_net_raw=pe /path/to/bin/node`). Systemd users can add the following lines to the `[Service]` section of homebridge's unit file (or create a drop-in if unit is packaged by your distro) to achieve this in a more secure way:_
 ```
 CapabilityBoundingSet=CAP_NET_RAW
 AmbientCapabilities=CAP_NET_RAW
@@ -63,7 +63,16 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "ip": "192.168.1.148",
       "log": false,
       "broadcastAddress": "172.16.1.255"
+    },
+    {
+      "accessory": "NetworkDevice",
+      "name": "My ESXi Server",
+      "ip": "192.168.1.125",
+      "isEsxiMachine": true,
+      "esxiWakeCommand": "sshpass ESXPassword ssh root@EsxiHost 'vim-cmd vmsvc/power.on' 3",
+      "esxiHostIp": "192.168.1.7"
     }
+
 ]
 ```
 _Note: the accessory name has recently been renamed to "NetworkDevice" to address [this issue](https://github.com/AlexGustafsson/homebridge-wol/issues/17)_
