@@ -82,8 +82,8 @@ _Note: using username and passwords in a command is heavily discouraged as this 
 | --------- | --------------------------------------------------------------- | ---------|
 | accessory | The type of accessory - has to be "NetworkDevice"               | Yes      |
 | name      | The name of the device - used in HomeKit apps as well as Siri, default `My Computer` | Yes      |
-| mac       | The device's MAC address - used to send Magic Packets         | No       |
-| ip        | The IPv4 address of the device - used to check current status | No       |
+| mac       | The device's MAC address (without any colon separators) - used to send Magic Packets         | No       |
+| ip        | The IPv4 address or hostname of the device - used to check current status | No       |
 | pingInterval      | Ping interval in seconds, only used if `ip` is set, default `2`                      | No       |
 | wakeGraceTime     | Number of seconds to wait after wake-up before checking online status and issuing the `wakeCommand`, default `45`   |  No       |
 | wakeCommand | Command to run after initial wake-up, useful for macOS users in need of running `caffeinate` |  No       |
