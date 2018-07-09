@@ -1,6 +1,5 @@
 <p align="center">
   <img src=".github/logo.png">
-  <!--Tazugane™ Gothic Heavy-->
 </p>
 <p align="center">
   <a href="https://www.npmjs.com/package/homebridge-wol">
@@ -15,7 +14,6 @@
 
 # A Wake on Lan plugin for Homebridge
 ### Turn your PCs, laptops, servers and more on and off through Siri
-***
 
 
 ## Quick Start
@@ -135,9 +133,9 @@ This repository has evolved thanks to you. Issues reporting bugs, missing featur
 
 Beyond all helpful issues, this repository has seen modifications from these helpful contributors:
 
-| [<img src="https://avatars1.githubusercontent.com/u/14974112?v=4" width="60px;"/><br /><sub><b>@AlexGustafsson</b></sub>](https://github.com/AlexGustafsson)<br/><sub>Author</sub> | [<img src="https://avatars2.githubusercontent.com/u/1850718?v=4" width="60px;"/><br /><sub><b>@cr3ative</b></sub>](https://api.github.com/users/cr3ative)<br/><sub>Collaborator</sub> | [<img src="https://avatars1.githubusercontent.com/u/171494?v=4" width="60px;"/><br /><sub><b>@blubber</b></sub>](https://api.github.com/users/blubber)<br/><sub>Previous collaborator</sub> |
-| :-: | :-: | :-: |
-| [<img src="https://avatars2.githubusercontent.com/u/727711?v=4" width="60px;"/><br /><sub><b>@lnxbil</b></sub>](https://api.github.com/users/lnxbil)<br/><sub>Contributor</sub> | [<img src="https://avatars2.githubusercontent.com/u/813112?v=4" width="60px;"/><br /><sub><b>@residentsummer</b></sub>](https://api.github.com/users/residentsummer)<br/><sub>Contributor</sub> | [<img src="https://avatars2.githubusercontent.com/u/1338860?v=4" width="60px;"/><br /><sub><b>@JulianRecke</b></sub>](https://api.github.com/users/JulianRecke)<br/><sub>Contributor</sub> |
+| [<img src="https://avatars1.githubusercontent.com/u/14974112?v=4" width="60px;" width="60px;"/><br /><sub><b>@AlexGustafsson</b></sub>](https://github.com/AlexGustafsson)<br /> <sub>Author</sub> | [<img src="https://avatars1.githubusercontent.com/u/1850718?v=4" width="60px;" width="60px;"/><br /><sub><b>@cr3ative</b></sub>](https://github.com/cr3ative)<br /> <sub>Collaborator</sub> | [<img src="https://avatars1.githubusercontent.com/u/171494?v=4" width="60px;" width="60px;"/><br /><sub><b>@blubber</b></sub>](https://github.com/blubber)<br /> <sub>Previous collaborator</sub> |
+| :---: | :---: | :---: |
+| [<img src="https://avatars1.githubusercontent.com/u/727711?v=4" width="60px;" width="60px;"/><br /><sub><b>@lnxbil</b></sub>](https://github.com/lnxbil)<br /> <sub>Contributor</sub> | [<img src="https://avatars1.githubusercontent.com/u/813112?v=4" width="60px;" width="60px;"/><br /><sub><b>@residentsummer</b></sub>](https://github.com/residentsummer)<br /> <sub>Contributor</sub> | [<img src="https://avatars1.githubusercontent.com/u/1338860?v=4" width="60px;" width="60px;"/><br /><sub><b>@JulianRecke</b></sub>](https://github.com/JulianRecke)<br /> <sub>Contributor</sub> |
 
 ##### Development
 
