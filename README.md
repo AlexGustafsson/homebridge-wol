@@ -1,31 +1,46 @@
-# Wake on Lan plugin for Homebridge
+<p align="center">
+  <img src=".github/logo.png">
+  <!--Tazugane™ Gothic Heavy-->
+</p>
+<p align="center">
+  <a href="https://www.npmjs.com/package/homebridge-wol">
+      <img src="https://img.shields.io/npm/v/homebridge-wol.svg?style=flat-square" alt="NPM Version">
+  </a>
+  <a href="https://www.npmjs.com/package/homebridge-wol">
+      <img src="https://img.shields.io/npm/dt/homebridge-wol.svg?style=flat-square" alt="Total NPM Downloads">
+  </a>
+  <br>
+  <strong><a href="#quickstart">Quick Start</a> | <a href="#contribute">Contribute</a> </strong>
+</p>
+
+# A Wake on Lan plugin for Homebridge
 ### Turn your PCs, laptops, servers and more on and off through Siri
 ***
 
 
-> Hello! The long-overdue launch of the new homebridge-wol is upon us. If you've been using the package before, re-read this document to make sure you're up to date on breaking changes etc.
+## Quick Start
+<a id="quickstart"></a>
 
-### Setting up
-
-###### Installing
-
-To install the plugin, head over to the machine with Homebridge set up and run the following commands:
+To install the plugin, head over to the machine with Homebridge set up and run the following command:
 ```
-# Download the module
 npm install -g homebridge-wol
 ```
 
-__If you've previously used a version lower than `3.0.0` be sure to change the accessory name to `NetworkDevice` (previously `Computer`). See 'Configuration' below.__
-
-_Note: homebridge-wol requires extra permissions due to the use of pinging and magic packages. Start homebridge with sudo: `sudo homebridge` or change capabilities accordingly (`setcap cap_net_raw=pe /path/to/bin/node`). Systemd users can add the following lines to the `[Service]` section of homebridge's unit file (or create a drop-in if unit is packaged by your distro) to achieve this in a more secure way:_
+Add your devices to your `config.json`:
+```json
+"accessories": [
+  {
+    "accessory": "NetworkDevice",
+    "name": "My MacBook",
+    "ip": "192.168.1.51",
+    "mac": "aa:bb:cc:dd:ee:ff"
+  }
+]
 ```
-CapabilityBoundingSet=CAP_NET_RAW
-AmbientCapabilities=CAP_NET_RAW
-```
 
-###### Configuration
+## Configuration
 
-To make Homebridge aware of the new plugin, you will have to add it to your configuration usually found in `/root/.homebridge/config.json` or `/home/username/.homebridge/config.json` If the file does not exist, you may [create it](https://github.com/nfarina/homebridge/blob/master/config-sample.json). Somewhere inside that file you should see a key named `accessories`. This is where you can add your computer as shown here:
+To make Homebridge aware of the new plugin, you will have to add it to your configuration usually found in `/root/.homebridge/config.json` or `/home/username/.homebridge/config.json`. If the file does not exist, you can create it following the [config sample](https://github.com/nfarina/homebridge/blob/master/config-sample.json). Somewhere inside that file you should see a key named `accessories`. This is where you can add your computer as shown here:
 
  ```json
 "accessories": [
@@ -66,17 +81,8 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
     }
 ]
 ```
-_Note: the accessory name has recently been renamed to "NetworkDevice" to address [this issue](https://github.com/AlexGustafsson/homebridge-wol/issues/17)_
 
-_Note: the Raspberry Pi example uses the "sshpass" package to sign in on the remote host. The "-oStrictHostKeyChecking=no" parameter permits any key that the host may present. You should be using ssh keys to authenticate yourself._
-
-_Note: the Macbook example uses caffeinate in order to keep the computer alive after the initial wake-up. See [this issue](https://github.com/AlexGustafsson/homebridge-wol/issues/30#issuecomment-368733512) for more information._
-
-_Note: the Windows example requires the samba-common package to be installed on the server. If you're on Windows 10 and you're signing in with a Microsoft account, the command should use your local username instead of your Microsoft ID (e-mail). Also note that you may or may not need to run `net rpc` with `sudo`._
-
-_Note: using username and passwords in a command is heavily discouraged as this stores them in the configuration file and may log them to the terminal output and or a log file. Use other authentication methods or environment variables instead._
-
-###### Options
+##### Options
 
 | Key       | Description                                                     | Required |
 | --------- | --------------------------------------------------------------- | ---------|
@@ -94,39 +100,54 @@ _Note: using username and passwords in a command is heavily discouraged as this 
 | timeout | Number of seconds to wait for pinging to finish, default `1` | No |
 | broadcastAddress | The broadcast address to use when sending the wake on lan packet | No |
 
-_Note: although neither mac or ip are required, at last one is needed for the plugin to be functional. One can however leave out mac and only use ip to be able to check the status of the device without being able to turn it on._
+## Notes and FAQ
 
-### Usage (pre iOS 10)
+##### Permissions
+This plugin requires extra permissions due to the use of pinging and magic packages. Start Homebridge using `sudo homebridge` or change capabilities accordingly (`setcap cap_net_raw=pe /path/to/bin/node`). Systemd users can add the following lines to the `[Service]` section of Homebridge's unit file (or create a drop-in if unit is packaged by your distro) to achieve this in a more secure way like so:
+```
+CapabilityBoundingSet=CAP_NET_RAW
+AmbientCapabilities=CAP_NET_RAW
+```
 
-To use this package you need a HomeKit-enabled app. When you've gone through the setup there should be a switch showing in the app with the name of your device. If the device has been configured properly, it will turn on when the switch is flicked. If there is configuration to support it (see the above table), the device will turn off.
+##### Waking an Apple computer
+The Macbook configuration example uses `caffeinate` in order to keep the computer alive after the initial wake-up. See [this issue](https://github.com/AlexGustafsson/homebridge-wol/issues/30#issuecomment-368733512) for more information.
 
-If you haven't yet found an applicable app, I recommend the following:
+##### Controlling a Windows PC
 
-##### [iDevices](https://itunes.apple.com/se/app/idevices-connected/id682656390?mt=8)
-iDevices is a great app to configure everything HomeKit related. It offers great control over houses, rooms, scenes and more.
+The Windows configuration example requires the `samba-common` package to be installed on the server. If you're on Windows 10 and you're signing in with a Microsoft account, the command should use your local username instead of your Microsoft ID (e-mail). Also note that you may or may not need to run `net rpc` with `sudo`.
 
-#### [Beam](https://itunes.apple.com/us/app/beam-elevate-your-home/id1038439712?mt=8)
-Beam is a stylish, minimalistic approach to a home remote. Whilst not offering the configurability of iDevices, Beam is targeting the everyday use with a great user experience.
+##### SSH as wake or shutdown command
+The Raspberry Pi example uses the `sshpass` package to sign in on the remote host. The `-oStrictHostKeyChecking=no` parameter permits any key that the host may present. This usage is heavily discouraged. You should be using SSH keys to authenticate yourself.
 
-### Contibution
+##### Secrets in the configuration
+Using username and passwords in a command is heavily discouraged as this stores them in the configuration file and may log them to the terminal output and or a log file. Use other authentication methods or environment variables instead.
+
+### Contibute
+<a id="contribute"></a>
 
 Any contribution is welcome. If you're not able to code it yourself, perhaps someone else is - so post an issue if there's anything on your mind.
 
-###### Development
+If you're new to the open source community, JavaScript, GitHub or just uncertain where to begin - [issues labeled "good first issue"](https://github.com/AlexGustafsson/homebridge-wol/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) are a great place to start. Just comment an issue you'd like to investigate and you'll get guidance along the way.
 
-Clone the repository:
+##### Contributors
+
+This repository has evolved thanks to you. Issues reporting bugs, missing features or quirks are always a welcome method to help grow this project.
+
+Beyond all helpful issues, this repository has seen modifications from these helpful contributors:
+
+| [<img src="https://avatars1.githubusercontent.com/u/14974112?v=4" width="60px;"/><br /><sub><b>@AlexGustafsson</b></sub>](https://github.com/AlexGustafsson)<br/><sub>Author</sub> | [<img src="https://avatars2.githubusercontent.com/u/1850718?v=4" width="60px;"/><br /><sub><b>@cr3ative</b></sub>](https://api.github.com/users/cr3ative)<br/><sub>Collaborator</sub> | [<img src="https://avatars1.githubusercontent.com/u/171494?v=4" width="60px;"/><br /><sub><b>@blubber</b></sub>](https://api.github.com/users/blubber)<br/><sub>Previous collaborator</sub> |
+| :-: | :-: | :-: |
+| [<img src="https://avatars2.githubusercontent.com/u/727711?v=4" width="60px;"/><br /><sub><b>@lnxbil</b></sub>](https://api.github.com/users/lnxbil)<br/><sub>Contributor</sub> | [<img src="https://avatars2.githubusercontent.com/u/813112?v=4" width="60px;"/><br /><sub><b>@residentsummer</b></sub>](https://api.github.com/users/residentsummer)<br/><sub>Contributor</sub> | [<img src="https://avatars2.githubusercontent.com/u/1338860?v=4" width="60px;"/><br /><sub><b>@JulianRecke</b></sub>](https://api.github.com/users/JulianRecke)<br/><sub>Contributor</sub> |
+
+##### Development
+
 ```
+# Clone project
 git clone https://github.com/AlexGustafsson/homebridge-wol.git && cd homebridge-wol
-```
 
-Set up for development:
-```
+# Set up for development
 npm install && npm link
-```
 
-Now follow the configuration of homebridge / the plugin as per usual.
-
-Follow the conventions enforced:
-```
+# Make sure tests pass
 npm test
 ```
