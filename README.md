@@ -15,9 +15,8 @@
 # A Wake on Lan plugin for Homebridge
 ### Turn your PCs, laptops, servers and more on and off through Siri
 
-
-## Quick Start
 <a id="quickstart"></a>
+## Quick Start
 
 To install the plugin, head over to the machine with Homebridge set up and run the following command:
 ```
@@ -120,8 +119,8 @@ The Raspberry Pi example uses the `sshpass` package to sign in on the remote hos
 ##### Secrets in the configuration
 Using username and passwords in a command is heavily discouraged as this stores them in the configuration file and may log them to the terminal output and or a log file. Use other authentication methods or environment variables instead.
 
-### Contibute
 <a id="contribute"></a>
+### Contibute
 
 Any contribution is welcome. If you're not able to code it yourself, perhaps someone else is - so post an issue if there's anything on your mind.
 
