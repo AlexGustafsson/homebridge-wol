@@ -69,8 +69,10 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "name": "My ESXi Server",
       "ip": "192.168.1.125",
       "isEsxiMachine": true,
-      "esxiWakeCommand": "sshpass ESXPassword ssh root@EsxiHost 'vim-cmd vmsvc/power.on' 3",
-      "esxiHostIp": "192.168.1.7"
+      "esxiVMid": 0,
+      "esxiHostIp": "192.168.1.146",
+      "esxiHostSSHUsername": "root",
+      "esixHostSSHPassword": "password"
     }
 
 ]
@@ -102,8 +104,17 @@ _Note: using username and passwords in a command is heavily discouraged as this 
 | logPinger | Whether or not the plugin should log ping messages, default `false` | No |
 | timeout | Number of seconds to wait for pinging to finish, default `1` | No |
 | broadcastAddress | The broadcast address to use when sending the wake on lan packet | No |
-
+| isEsxiMachine | Either true or false depending on whether your target is running ESXi or not | No
+| esxiVMid | The ID of your virtual machine that you would like to boot up | No
+| esxiHostIp | The host IP address of your ESXi Machine. __Note that this is different from
+the `ip` configuration option__ | No
+| esxiHostSSHUsername | The SSH username of your ESXi host. Usually root if you're running
+a homelab | No
+| esxiHostSSHPassword | The SSH password of your ESXi host. | No
 _Note: although neither mac or ip are required, at last one is needed for the plugin to be functional. One can however leave out mac and only use ip to be able to check the status of the device without being able to turn it on._
+
+_Note 2: Setting up an ESXi machine means that MAC address is not required. However,
+the ip address is required to use the pinger to check the status of the machine_
 
 ### Usage (pre iOS 10)
 
