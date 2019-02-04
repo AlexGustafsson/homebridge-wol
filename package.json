@@ -31,14 +31,14 @@
   "license": "ISC",
   "dependencies": {
     "ping": "^0.2.2",
-    "wake_on_lan": "0.0.4"
+    "wake_on_lan": "^1.0.0"
   },
   "engines": {
     "node": ">=0.12.0",
     "homebridge": ">=0.2.0"
   },
   "devDependencies": {
-    "xo": "^0.20.3"
+    "xo": "^0.24.0"
   },
   "xo": {
     "space": 2,
