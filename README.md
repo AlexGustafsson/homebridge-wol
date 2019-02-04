@@ -77,9 +77,7 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "broadcastAddress": "172.16.1.255"
     }
 ]
-```'20:DE:20:DE:20:DE'
-'20-DE-20-DE-20-DE'
-'20DE20DE20DE'
+```
 
 ##### Options
 
