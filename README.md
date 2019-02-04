@@ -77,7 +77,9 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "broadcastAddress": "172.16.1.255"
     }
 ]
-```
+```'20:DE:20:DE:20:DE'
+'20-DE-20-DE-20-DE'
+'20DE20DE20DE'
 
 ##### Options
 
@@ -85,7 +87,7 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
 | --------- | --------------------------------------------------------------- | ---------|
 | accessory | The type of accessory - has to be "NetworkDevice"               | Yes      |
 | name      | The name of the device - used in HomeKit apps as well as Siri, default `My Computer` | Yes      |
-| mac       | The device's MAC address - used to send Magic Packets         | No       |
+| mac       | The device's MAC address - used to send Magic Packets. Allows any format such as `XX:XX:XX:XX:XX:XX` or `XXXXXXXXXXXX`         | No       |
 | ip        | The IPv4 address of the device - used to check current status | No       |
 | pingInterval      | Ping interval in seconds, only used if `ip` is set, default `2`                      | No       |
 | wakeGraceTime     | Number of seconds to wait after wake-up before checking online status and issuing the `wakeCommand`, default `45`   |  No       |
