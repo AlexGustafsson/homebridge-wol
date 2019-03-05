@@ -35,6 +35,10 @@ Add your devices to your `config.json`:
 ]
 ```
 
+_NOTE: the master branch is considered experimental and regressions may occur._
+
+_NOTE: the master branch does currently not support the wake grace time._
+
 ## Configuration
 
 To make Homebridge aware of the new plugin, you will have to add it to your configuration usually found in `/root/.homebridge/config.json` or `/home/username/.homebridge/config.json`. If the file does not exist, you can create it following the [config sample](https://github.com/nfarina/homebridge/blob/master/config-sample.json). Somewhere inside that file you should see a key named `accessories`. This is where you can add your computer as shown here:
