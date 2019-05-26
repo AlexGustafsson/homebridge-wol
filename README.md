@@ -15,6 +15,11 @@
 # A Wake on Lan plugin for Homebridge
 ### Turn your PCs, laptops, servers and more on and off through Siri
 
+> Hi! Are you willing to help? This project is looking for contributors. PRs are more than welcome.
+
+> Unsure of where to start? Read through open issues and try to solve them or open a new issue to start a conversation.
+> Currently, [3.3](https://github.com/AlexGustafsson/homebridge-wol/milestone/1) is the next milestone.
+
 <a id="quickstart"></a>
 ## Quick Start
 
