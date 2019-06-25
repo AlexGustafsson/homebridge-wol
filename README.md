@@ -101,7 +101,7 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
 | wakeCommand | Command to run after initial wake-up, useful for macOS users in need of running `caffeinate` |  No       |
 | shutdownGraceTime | Number of seconds to wait after shutdown before checking offline status, default `15` | No       |
 | shutdownCommand   | Command to run in order to shut down the remote machine                               | No       |
-| pingCommand   | Command to run in order to know if a host is up or not. If the command exits successfully (non-zero exit code) the host is considered up. If an error is thrown or the command exits with a non-zero exit code, the host is considered down.                               | No       |
+| pingCommand   | Command to run in order to know if a host is up or not. If the command exits successfully (zero as the exit code) the host is considered up. If an error is thrown or the command exits with a non-zero exit code, the host is considered down.                               | No       |
 | log | Whether or not the plugin should log status messages, default `true` | No |
 | logPinger | Whether or not the plugin should log ping messages, default `false` | No |
 | timeout | Number of seconds to wait for pinging to finish, default `1` | No |
