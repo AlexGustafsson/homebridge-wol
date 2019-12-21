@@ -40,10 +40,6 @@ Add your devices to your `config.json`:
 ]
 ```
 
-_NOTE: the master branch is considered experimental and regressions may occur._
-
-_NOTE: the master branch does currently not support the wake grace time._
-
 ## Configuration
 
 To make Homebridge aware of the new plugin, you will have to add it to your configuration usually found in `/root/.homebridge/config.json` or `/home/username/.homebridge/config.json`. If the file does not exist, you can create it following the [config sample](https://github.com/nfarina/homebridge/blob/master/config-sample.json). Somewhere inside that file you should see a key named `accessories`. This is where you can add your computer as shown here:
@@ -142,9 +138,10 @@ This repository has evolved thanks to you. Issues reporting bugs, missing featur
 
 Beyond all helpful issues, this repository has seen modifications from these helpful contributors:
 
-| [<img src="https://avatars1.githubusercontent.com/u/14974112?v=4" width="60px;" width="60px;"/><br /><sub><b>@AlexGustafsson</b></sub>](https://github.com/AlexGustafsson)<br /> <sub>Author</sub> | [<img src="https://avatars1.githubusercontent.com/u/1850718?v=4" width="60px;" width="60px;"/><br /><sub><b>@cr3ative</b></sub>](https://github.com/cr3ative)<br /> <sub>Collaborator</sub> | [<img src="https://avatars1.githubusercontent.com/u/171494?v=4" width="60px;" width="60px;"/><br /><sub><b>@blubber</b></sub>](https://github.com/blubber)<br /> <sub>Previous collaborator</sub> |
+| [<img src="https://avatars1.githubusercontent.com/u/14974112?v=4" width="60px;" width="60px;"/><br /><sub><b>@AlexGustafsson</b></sub>](https://github.com/AlexGustafsson)<br /> <sub>Author</sub> | [<img src="https://avatars1.githubusercontent.com/u/1850718?v=4" width="60px;" width="60px;"/><br /><sub><b>@cr3ative</b></sub>](https://github.com/cr3ative)<br /> <sub>Previous collaborator</sub> | [<img src="https://avatars1.githubusercontent.com/u/171494?v=4" width="60px;" width="60px;"/><br /><sub><b>@blubber</b></sub>](https://github.com/blubber)<br /> <sub>Previous collaborator</sub> |
 | :---: | :---: | :---: |
 | [<img src="https://avatars1.githubusercontent.com/u/727711?v=4" width="60px;" width="60px;"/><br /><sub><b>@lnxbil</b></sub>](https://github.com/lnxbil)<br /> <sub>Contributor</sub> | [<img src="https://avatars1.githubusercontent.com/u/813112?v=4" width="60px;" width="60px;"/><br /><sub><b>@residentsummer</b></sub>](https://github.com/residentsummer)<br /> <sub>Contributor</sub> | [<img src="https://avatars1.githubusercontent.com/u/1338860?v=4" width="60px;" width="60px;"/><br /><sub><b>@JulianRecke</b></sub>](https://github.com/JulianRecke)<br /> <sub>Contributor</sub> |
+| [<img src="https://avatars1.githubusercontent.com/u/3981445?v=4" width="60px;" width="60px;"/><br /><sub><b>@tanmaster</b></sub>](https://github.com/tanmaster)<br /> <sub>Contributor</sub> | | |
 
 ##### Development
 
