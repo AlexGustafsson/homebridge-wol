@@ -18,7 +18,6 @@
 > Hi! Are you willing to help? This project is looking for contributors. PRs are more than welcome.
 
 > Unsure of where to start? Read through open issues and try to solve them or open a new issue to start a conversation.
-> Currently, [3.3](https://github.com/AlexGustafsson/homebridge-wol/milestone/1) is the next milestone.
 
 <a id="quickstart"></a>
 ## Quick Start
@@ -122,17 +121,17 @@ The Macbook configuration example uses `caffeinate` in order to keep the compute
 The Windows configuration example requires the `samba-common` package to be installed on the server. If you're on Windows 10 and you're signing in with a Microsoft account, the command should use your local username instead of your Microsoft ID (e-mail). Also note that you may or may not need to run `net rpc` with `sudo`.
 
 ##### SSH as wake or shutdown command
-The Raspberry Pi example uses the `sshpass` package to sign in on the remote host. The `-oStrictHostKeyChecking=no` parameter permits any key that the host may present. This usage is heavily discouraged. You should be using SSH keys to authenticate yourself.
+The Raspberry Pi example uses the `sshpass` package to sign in on the remote host. The `-oStrictHostKeyChecking=no` parameter permits any key that the host may present. **This usage is heavily discouraged. You should be using SSH keys to authenticate yourself.**
 
 ##### Secrets in the configuration
-Using username and passwords in a command is heavily discouraged as this stores them in the configuration file and may log them to the terminal output and or a log file. Use other authentication methods or environment variables instead.
+Using username and passwords in a command is **heavily discouraged** as this stores them in the configuration file in plaintext. Use other authentication methods or environment variables instead.
 
 <a id="contribute"></a>
 ### Contibute
 
 Any contribution is welcome. If you're not able to code it yourself, perhaps someone else is - so post an issue if there's anything on your mind.
 
-If you're new to the open source community, JavaScript, GitHub or just uncertain where to begin - [issues labeled "good first issue"](https://github.com/AlexGustafsson/homebridge-wol/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) are a great place to start. Just comment an issue you'd like to investigate and you'll get guidance along the way.
+If you're new to the open source community, JavaScript, GitHub or just uncertain where to begin - [issues labeled "good first issue"](https://github.com/AlexGustafsson/homebridge-wol/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) are a great place to start. Just comment on an issue you'd like to investigate and you'll get guidance along the way.
 
 ##### Contributors
 
