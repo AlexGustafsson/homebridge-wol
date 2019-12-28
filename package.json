@@ -34,7 +34,7 @@
     "wake_on_lan": "^1.0.0"
   },
   "engines": {
-    "node": ">=0.12.0",
+    "node": ">=11.0.0",
     "homebridge": ">=0.2.0"
   },
   "devDependencies": {
