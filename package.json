@@ -33,12 +33,12 @@
     "ping": "^0.2.2",
     "wake_on_lan": "^1.0.0"
   },
+  "devDependencies": {
+    "xo": "^0.25.3"
+  },
   "engines": {
     "node": ">=11.0.0",
     "homebridge": ">=0.4.0"
-  },
-  "devDependencies": {
-    "xo": "^0.24.0"
   },
   "xo": {
     "space": 2,
