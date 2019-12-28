@@ -153,6 +153,6 @@ git clone https://github.com/AlexGustafsson/homebridge-wol.git && cd homebridge-
 # Set up for development
 npm install && npm link
 
-# Make sure tests pass
-npm test
+# Make sure linting passes
+npm run lint
 ```

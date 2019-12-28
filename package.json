@@ -4,7 +4,7 @@
   "description": "A Wake on Lan plugin for Homebridge: https://github.com/nfarina/homebridge",
   "main": "index.js",
   "scripts": {
-    "test": "xo"
+    "lint": "xo"
   },
   "keywords": [
     "homebridge-plugin",
@@ -42,6 +42,7 @@
   },
   "xo": {
     "space": 2,
+    "esnext": true,
     "rules": {
       "curly": [
         "error",
@@ -53,6 +54,27 @@
         {
           "classes": false
         }
+      ],
+      "unicorn/catch-error-name": [
+        "error",
+        {
+          "name": "error"
+        }
+      ],
+      "dot-notation": [
+        "off"
+      ],
+      "quote-props": [
+        "off"
+      ],
+      "object-curly-spacing": [
+        "off"
+      ],
+      "no-new": [
+        "off"
+      ],
+      "padding-line-between-statements": [
+        "off"
       ]
     }
   }
