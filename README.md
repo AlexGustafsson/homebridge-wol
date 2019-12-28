@@ -89,17 +89,19 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
 | Key       | Description                                                     | Required |
 | --------- | --------------------------------------------------------------- | ---------|
 | accessory | The type of accessory - has to be "NetworkDevice"               | Yes      |
-| name      | The name of the device - used in HomeKit apps as well as Siri, default `My Computer` | Yes      |
-| mac       | The device's MAC address - used to send Magic Packets. Allows any format such as `XX:XX:XX:XX:XX:XX` or `XXXXXXXXXXXX`         | No       |
-| ip        | The IPv4 address of the device - used to check current status | No       |
-| pingInterval      | Ping interval in seconds, only used if `ip` is set, default `2`                      | No       |
-| wakeGraceTime     | Number of seconds to wait after wake-up before checking online status and issuing the `wakeCommand`, default `45`   |  No       |
-| wakeCommand | Command to run after initial wake-up, useful for macOS users in need of running `caffeinate` |  No       |
-| shutdownGraceTime | Number of seconds to wait after shutdown before checking offline status, default `15` | No       |
-| shutdownCommand   | Command to run in order to shut down the remote machine                               | No       |
-| pingCommand   | Command to run in order to know if a host is up or not. If the command exits successfully (zero as the exit code) the host is considered up. If an error is thrown or the command exits with a non-zero exit code, the host is considered down.                               | No       |
+| name | The name of the device - used in HomeKit apps as well as Siri, default `My Computer` | Yes      |
+| mac | The device's MAC address - used to send Magic Packets. Allows any format such as `XX:XX:XX:XX:XX:XX` or `XXXXXXXXXXXX` | No |
+| ip | The IPv4 address of the device - used to check current status | No |
+| pingInterval | Ping interval in seconds, only used if `ip` is set, default `2` | No |
+| pingsToChange | The number of pings necessary to trigger a state change, only used if `ip` is set, default `5` | No |
+| wakeGraceTime | Number of seconds to wait after wake-up before checking online status and issuing the `wakeCommand`, default `45` |  No |
+| wakeCommand | Command to run after initial wake-up, useful for macOS users in need of running `caffeinate` |  No |
+| shutdownGraceTime | Number of seconds to wait after shutdown before checking offline status, default `15` | No |
+| shutdownCommand | Command to run in order to shut down the remote machine | No |
+| pingCommand | Command to run in order to know if a host is up or not. If the command exits successfully (zero as the exit code) the host is considered up. If an error is thrown or the command exits with a non-zero exit code, the host is considered down. | No |
 | log | Whether or not the plugin should log status messages, default `true` | No |
-| logPinger | Whether or not the plugin should log ping messages, default `false` | No |
+| debugLog | Whether or not the plugin should log debug information, default `false` | No |
+| logPinger | Whether or not the plugin should log ping messages (state transitions), default `false` | No |
 | timeout | Number of seconds to wait for pinging to finish, default `1` | No |
 | broadcastAddress | The broadcast address to use when sending the wake on lan packet | No |
 
