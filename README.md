@@ -93,6 +93,7 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
 | ip | The IPv4 address of the device - used to check current status | No |
 | pingInterval | Ping interval in seconds, only used if `ip` is set, default `2` | No |
 | pingsToChange | The number of pings necessary to trigger a state change, only used if `ip` is set, default `5` | No |
+| startCommand | Command to run in order to start the machine | No |
 | wakeGraceTime | Number of seconds to wait after wake-up before checking online status and issuing the `wakeCommand`, default `45` |  No |
 | wakeCommand | Command to run after initial wake-up, useful for macOS users in need of running `caffeinate` |  No |
 | shutdownGraceTime | Number of seconds to wait after shutdown before checking offline status, default `15` | No |
