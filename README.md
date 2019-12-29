@@ -97,7 +97,7 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
 | Key | Description |
 | --- | ------------|
 | accessory | The type of accessory - has to be "NetworkDevice" |
-| name | The name of the device - used in HomeKit apps as well as Siri, default `My Computer` |
+| name | The name of the device - used in HomeKit apps as well as Siri, default `My NetworkDevice` |
 
 ### Optional configuration
 
