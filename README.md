@@ -105,6 +105,18 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
 | timeout | Number of seconds to wait for pinging to finish, default `1` | No |
 | broadcastAddress | The broadcast address to use when sending the wake on lan packet | No |
 
+## Lifecycle
+
+Whenever Homebridge starts, the plugin will check the state of all configured devices. This is done by pinging or executing the `pingCommand` once, depending on the configuration. If the pinging or `pingCommand` executes successfully, the device is considered online and vice versa.
+
+The pinging by actual pings or use of the `pingCommand` will continue in the background, monitoring the state of the device. If `pingsToChange` (defaults to 5) pings (be it actual pings or executions of `pingCommand`) have the same result and that result is not the current state, the state of the device will be considered changed.
+
+This pinging will result in state changes between online and offline.
+
+Whenever you flick a switch to its on position via HomeKit, the device is marked as "turning on". Then a WoL packet is sent to the device if a MAC address is configured and if a `startCommand` is configured, it is also executed immediately. After the device has been started, it is marked as online. Then the plugin will wait for the time configured by `wakeGraceTime` (defaults to 45s). If a `wakeCommand` is configured, it will be called after the wait is over. Once all commands are completed, the device will be monitored again by the pinger - switching its state automatically.
+
+Whenever you flick a switch to its off position via HomeKit, the device is immediately marked as turning off. A shutdown command is executed if it is configured. After the command's completion (or directly if none is configured), the plugin will wait for `shutdownGraceTime` (defaults to 15s) before continuing to monitor the device using the configured pinging method.
+
 ## Notes and FAQ
 
 ##### Permissions
