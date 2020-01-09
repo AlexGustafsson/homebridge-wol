@@ -136,6 +136,12 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
 | logPinger | Whether or not the plugin should log ping messages (state transitions), default `false` |
 | debugLog | Whether or not the plugin should log debug information, default `false` |
 
+#### Miscellaneous
+
+| Key | Description |
+| --- | ------------|
+| returnEarly | Whether or not to let the plugin return early to mitigate Siri issue (see https://github.com/AlexGustafsson/homebridge-wol/issues/85). Defaults to `false` |
+
 <a id="lifecycle"></a>
 ## Lifecycle
 
