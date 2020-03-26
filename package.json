@@ -34,7 +34,7 @@
     "wake_on_lan": "^1.0.0"
   },
   "devDependencies": {
-    "xo": "^0.25.3"
+    "xo": "^0.28.1"
   },
   "engines": {
     "node": ">=11.0.0",
