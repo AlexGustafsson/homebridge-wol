@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/logo.png">
+  <img src=".github/banner.png">
 </p>
 <p align="center">
   <a href="https://www.npmjs.com/package/homebridge-wol">
