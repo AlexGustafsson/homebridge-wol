@@ -1,10 +1,12 @@
 {
   "name": "homebridge-wol",
+  "displayName": "Homebridge WoL",
   "version": "4.1.2",
   "description": "A Wake on Lan plugin for Homebridge",
   "main": "index.js",
   "scripts": {
-    "lint": "xo"
+    "lint": "xo",
+    "test": "rm -rf test/accessories test/persist && cd test && npm install && homebridge --insecure --plugin-path node_modules --user-storage-path ./ | tee log.txt"
   },
   "keywords": [
     "homebridge-plugin",
@@ -34,6 +36,8 @@
     "wake_on_lan": "^1.0.0"
   },
   "devDependencies": {
+    "homebridge": "^1.1.1",
+    "homebridge-config-ui-x": "^4.23.1",
     "xo": "^0.32.0"
   },
   "engines": {

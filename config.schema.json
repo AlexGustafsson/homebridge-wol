@@ -1,0 +1,236 @@
+{
+  "pluginAlias": "NetworkDevice",
+  "pluginType": "accessory",
+  "singular": false,
+  "headerDisplay": "Full documentation for homebridge-wol is available on its GitHub page: [https://github.com/AlexGustafsson/homebridge-wol](https://github.com/AlexGustafsson/homebridge-wol).",
+  "footerDisplay": "The homebridge-wol plugin wouldn't be the same without the community. Any contribution is welcome. If you're not able to code it yourself, perhaps someone else is - so post an issue if there's anything on your mind. If you're new to the open source community, JavaScript, GitHub or just uncertain where to begin - issues labeled \"good first issue\" are a great place to start. Just comment on an issue you'd like to investigate and you'll get guidance along the way. [Contribute](https://github.com/AlexGustafsson/homebridge-wol).",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "My NetworkDevice",
+        "required": false
+      },
+      "ip": {
+        "title": "IPv4 address",
+        "description": "The IPv4 address to ping in order to receive current status.",
+        "type": "string",
+        "required": false
+      },
+      "pingInterval": {
+        "title": "Ping interval",
+        "description": "Ping interval in seconds. Only used if the IP address is set.",
+        "type": "integer",
+        "default": 2,
+        "required": false
+      },
+      "pingsToChange": {
+        "title": "Pings to change",
+        "description": "The number of pings necessary to trigger a state change, only used if the IP address is set.",
+        "type": "integer",
+        "default": 5,
+        "requried": false
+      },
+      "pingTimeout": {
+        "title": "Ping timeout",
+        "description": "Number of seconds to wait for pinging to finish.",
+        "type": "integer",
+        "default": 1,
+        "required": false
+      },
+      "pingCommand": {
+        "title": "Ping command",
+        "description": "Command to run in order to know if a host is up or not. If the command exits successfully (zero as the exit code) the host is considered up. If an error is thrown or the command exits with a non-zero exit code, the host is considered down.",
+        "type": "string",
+        "required": false
+      },
+      "mac": {
+        "title": "MAC address",
+        "description": "The device's MAC address - used to send Magic Packets. Allows any format such as XX:XX:XX:XX:XX:XX or XXXXXXXXXXXX.",
+        "type": "string",
+        "required": false
+      },
+      "broadcastAddress": {
+        "title": "Broadcast address",
+        "description": "The broadcast address to use when sending the Wake on LAN packet, such as 172.16.1.255.",
+        "type": "string",
+        "required": false
+      },
+      "startCommand": {
+        "title": "Start command",
+        "description": "Command to run in order to start the machine.",
+        "type": "string",
+        "required": false
+      },
+      "wakeGraceTime": {
+        "title": "Wake grace time",
+        "description": "Number of seconds to wait after startup before checking online status and issuing the wake command.",
+        "type": "integer",
+        "required": false,
+        "default": 45
+      },
+      "wakeCommand": {
+        "title": "Start command",
+        "description": "Command to run after initial startup, useful for macOS users in need of running caffeinate.",
+        "type": "string",
+        "required": false
+      },
+      "shutdownCommand": {
+        "title": "Shutdown command",
+        "description": "Command to run in order to shut down the remote machine.",
+        "type": "string",
+        "required": false
+      },
+      "shutdownGraceTime": {
+        "title": "Shutdown grace time",
+        "description": "Number of seconds to wait after shutdown before checking offline status.",
+        "type": "integer",
+        "required": false
+      },
+      "log": {
+        "title": "Log",
+        "description": "Whether or not the plugin should log status messages.",
+        "type": "boolean",
+        "default": true
+      },
+      "logPinger": {
+        "title": "Log pinger",
+        "description": "Whether or not the plugin should log ping messages (state transitions).",
+        "type": "boolean",
+        "default": false
+      },
+      "debugLog": {
+        "title": "Log pinger",
+        "description": "Whether or not the plugin should log debug information.",
+        "type": "boolean",
+        "default": false
+      },
+      "returnEarly": {
+        "title": "Return early",
+        "description": "Whether or not to let the plugin return early to mitigate Siri issue (see https://github.com/AlexGustafsson/homebridge-wol/issues/85).",
+        "type": "boolean",
+        "default": false
+      }
+    }
+  },
+  "form": null,
+  "display": null,
+  "layout": [
+    {
+      "type": "flex",
+      "flex-flow": "row wrap",
+      "items": [
+        {
+          "type": "flex",
+          "flex-flow": "column",
+          "items": [
+            "name"
+          ]
+        }
+      ]
+    },
+    {
+      "ref": "pinging",
+      "type": "fieldset",
+      "expandable": true,
+      "title": "Pinging configuration",
+      "items": [
+        "ip",
+        {
+          "key": "pingInterval",
+          "condition": {
+            "functionBody": "return (model.ip && model.ip.length > 0)"
+          }
+        },
+        {
+          "key": "pingsToChange",
+          "condition": {
+            "functionBody": "return (model.ip && model.ip.length > 0)"
+          }
+        },
+        {
+          "key": "pingTimeout",
+          "condition": {
+            "functionBody": "return (model.ip && model.ip.length > 0)"
+          }
+        },
+        {
+          "key": "pingCommand",
+          "condition": {
+            "functionBody": "return (model.ip && model.ip.length > 0)"
+          }
+        }
+      ]
+    },
+    {
+      "ref": "wake",
+      "type": "fieldset",
+      "expandable": true,
+      "title": "Wake configuration",
+      "items": [
+        "mac",
+        {
+          "key": "broadcastAddress",
+          "condition": {
+            "functionBody": "return (model.mac && model.mac.length > 0)"
+          }
+        },
+        {
+          "key": "startCommand",
+          "condition": {
+            "functionBody": "return (model.mac && model.mac.length > 0)"
+          }
+        },
+        {
+          "key": "wakeGraceTime",
+          "condition": {
+            "functionBody": "return (model.mac && model.mac.length > 0)"
+          }
+        },
+        {
+          "key": "wakeCommand",
+          "condition": {
+            "functionBody": "return (model.mac && model.mac.length > 0)"
+          }
+        }
+      ]
+    },
+    {
+      "ref": "shutdown",
+      "type": "fieldset",
+      "expandable": true,
+      "title": "Shutdown configuration",
+      "items": [
+        "shutdownCommand",
+        {
+          "key": "shutdownGraceTime",
+          "condition": {
+            "functionBody": "return (model.shutdownCommand && model.shutdownCommand.length > 0)"
+          }
+        }
+      ]
+    },
+    {
+      "ref": "logging",
+      "type": "fieldset",
+      "expandable": true,
+      "title": "Logging",
+      "items": [
+        "log",
+        "logPinger",
+        "debugLog"
+      ]
+    },
+    {
+      "ref": "miscellaneous",
+      "type": "fieldset",
+      "expandable": true,
+      "title": "Miscellaneous",
+      "items": [
+        "returnEarly"
+      ]
+    }
+  ]
+}

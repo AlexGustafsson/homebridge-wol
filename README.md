@@ -178,8 +178,8 @@ The Raspberry Pi example uses the `sshpass` package to sign in on the remote hos
 ### Secrets in the configuration
 Using username and passwords in a command is **heavily discouraged** as this stores them in the configuration file in plaintext. Use other authentication methods or environment variables instead.
 
-<a id="contributing"></a>
-## Contributing
+<a id="contribute"></a>
+## Contribute
 
 Any contribution is welcome. If you're not able to code it yourself, perhaps someone else is - so post an issue if there's anything on your mind.
 
@@ -207,4 +207,8 @@ npm install && npm link
 
 # Make sure linting passes
 npm run lint
+
+# Try to start Homebridge with the Homebridge Config UI X - available on localhost:8080
+# with default credentials admin:admin
+npm run test
 ```

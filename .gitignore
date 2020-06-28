@@ -1,2 +1,9 @@
 node_modules
 .DS_Store
+test/persist
+test/accessories
+test/log.txt
+test/package-lock.json
+test/config.json.*
+test/.uix-secrets
+test/auth.json

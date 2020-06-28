@@ -1,0 +1,37 @@
+{
+  "bridge": {
+    "name": "Homebridge",
+    "username": "CC:22:3D:E3:CE:30",
+    "manufacturer": "homebridge.io",
+    "model": "homebridge",
+    "port": 51826,
+    "pin": "031-45-154"
+  },
+  "accessories": [
+    {
+      "name": "Localhost",
+      "pingInterval": 2,
+      "pingsToChange": 5,
+      "pingTimeout": 1,
+      "wakeGraceTime": 45,
+      "ip": "127.0.0.1",
+      "log": true,
+      "logPinger": false,
+      "debugLog": false,
+      "returnEarly": false,
+      "accessory": "NetworkDevice"
+    }
+  ],
+  "platforms": [
+    {
+      "platform": "config",
+      "name": "Config",
+      "port": 8080,
+      "sudo": false,
+      "log": {
+        "method": "file",
+        "path": "log.txt"
+      }
+    }
+  ]
+}
