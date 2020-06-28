@@ -1,7 +1,7 @@
 {
   "name": "homebridge-wol",
   "version": "4.1.2",
-  "description": "A Wake on Lan plugin for Homebridge: https://github.com/nfarina/homebridge",
+  "description": "A Wake on Lan plugin for Homebridge",
   "main": "index.js",
   "scripts": {
     "lint": "xo"
