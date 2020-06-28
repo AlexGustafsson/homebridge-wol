@@ -1,0 +1,9 @@
+# Blacklist everything
+*
+
+# Whitelist application and test files
+!/lib
+!/index.js
+!/package*
+!/test
+!/config.schema.json

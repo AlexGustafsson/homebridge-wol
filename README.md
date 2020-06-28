@@ -15,10 +15,6 @@
 # A Wake on Lan plugin for Homebridge
 ### Turn your PCs, laptops, servers and more on and off through Siri
 
-> Hi! Are you willing to help? This project is looking for contributors. PRs are more than welcome.
-
-> Unsure of where to start? Read through open issues and try to solve them or open a new issue to start a conversation.
-
 <a id="quickstart"></a>
 ## Quick Start
 
@@ -211,4 +207,7 @@ npm run lint
 # Try to start Homebridge with the Homebridge Config UI X - available on localhost:8080
 # with default credentials admin:admin
 npm run test
+
+# Run Homebridge, Homebridge Config UI X and Homebridge WoL on the current maintainance node LTS version
+docker run --rm -it -p 8080:8080 $(docker build -q .)
 ```

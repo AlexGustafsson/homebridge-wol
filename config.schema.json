@@ -72,7 +72,7 @@
         "default": 45
       },
       "wakeCommand": {
-        "title": "Start command",
+        "title": "Wake command",
         "description": "Command to run after initial startup, useful for macOS users in need of running caffeinate.",
         "type": "string",
         "required": false
@@ -87,7 +87,8 @@
         "title": "Shutdown grace time",
         "description": "Number of seconds to wait after shutdown before checking offline status.",
         "type": "integer",
-        "required": false
+        "required": false,
+        "default": 15
       },
       "log": {
         "title": "Log",
