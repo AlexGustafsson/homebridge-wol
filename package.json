@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "homebridge": "^1.1.1",
-    "homebridge-config-ui-x": "^4.23.1",
-    "xo": "^0.32.0"
+    "homebridge-config-ui-x": "^4.23.2",
+    "xo": "^0.32.1"
   },
   "engines": {
     "node": ">=10.0.0",
