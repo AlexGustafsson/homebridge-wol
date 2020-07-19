@@ -91,6 +91,8 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
 ]
 ```
 
+For more configuration examples, please see the wiki which contains a growing collection of user-contributed guides on how to setup the plugin, Windows 10, Samba, Linux etc.: https://github.com/AlexGustafsson/homebridge-wol/wiki.
+
 ### Required configuration
 
 | Key | Description |
@@ -188,7 +190,7 @@ If you're new to the open source community, JavaScript, GitHub or just uncertain
 
 This repository has evolved thanks to you. Issues reporting bugs, missing features or quirks are always a welcome method to help grow this project.
 
-Beyond all helpful issues, this repository has seen modifications from these helpful contributors:
+Beyond all helpful issues and wiki posts, this repository has seen modifications from these helpful contributors:
 
 | [<img src="https://avatars1.githubusercontent.com/u/14974112?v=4" width="60px;" width="60px;"/><br /><sub><b>@AlexGustafsson</b></sub>](https://github.com/AlexGustafsson)<br /> <sub>Author</sub> | [<img src="https://avatars1.githubusercontent.com/u/1850718?v=4" width="60px;" width="60px;"/><br /><sub><b>@cr3ative</b></sub>](https://github.com/cr3ative)<br /> <sub>Previous collaborator</sub> | [<img src="https://avatars1.githubusercontent.com/u/171494?v=4" width="60px;" width="60px;"/><br /><sub><b>@blubber</b></sub>](https://github.com/blubber)<br /> <sub>Previous collaborator</sub> |
 | :---: | :---: | :---: |
