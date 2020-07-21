@@ -1,9 +1,9 @@
 node_modules
 .DS_Store
-test/persist
-test/accessories
-test/log.txt
-test/package-lock.json
-test/config.json.*
-test/.uix-secrets
-test/auth.json
+integration/persist
+integration/accessories
+integration/log.txt
+integration/package-lock.json
+integration/config.json.*
+integration/.uix-secrets
+integration/auth.json

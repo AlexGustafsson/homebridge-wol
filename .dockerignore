@@ -7,3 +7,6 @@
 !/package*
 !/test
 !/config.schema.json
+!/integration/homebridge-wol/package.json
+!/integration/homebridge-wol/config.json
+!/integration/homebridge-wol/user-key

@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "xo",
-    "test": "rm -rf test/accessories test/persist && cd test && npm install && homebridge --insecure --plugin-path node_modules --user-storage-path ./ | tee log.txt"
+    "test": "rm -rf integration/homebridge-wol/accessories integration/homebridge-wol/persist && cd integration/homebridge-wol && npm install && homebridge --insecure --plugin-path node_modules --user-storage-path ./ | tee log.txt"
   },
   "keywords": [
     "homebridge-plugin",

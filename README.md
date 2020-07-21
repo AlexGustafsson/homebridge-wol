@@ -57,12 +57,13 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "accessory": "NetworkDevice",
       "name": "My Macbook",
       "mac": "<mac-address>",
-      "ip": "192.168.1.51",
+      "ip": "macbook.local",
+      "pingCommand": "ssh macbook.local 'if [[ $(pmset -g powerstate IODisplayWrangler | tail -1 | cut -c29) -lt 4 ]]; then; exit 1; else; echo 1; fi;'",
       "pingInterval": 45,
       "wakeGraceTime": 10,
-      "wakeCommand": "ssh 192.168.1.51 caffeinate -u -t 300",
+      "wakeCommand": "ssh macbook.local caffeinate -u -t 300",
       "shutdownGraceTime": 15,
-      "shutdownCommand": "ssh 192.168.1.51 sudo shutdown -h now"
+      "shutdownCommand": "ssh macbook.local sudo shutdown -h now"
     },
     {
       "accessory": "NetworkDevice",
@@ -106,9 +107,9 @@ For more configuration examples, please see the wiki which contains a growing co
 
 | Key | Description |
 | --- | ------------|
-| ip | The IPv4 address of the device - used to check current status by pinging the device |
+| ip | The address or hostname of the device - used to check current status by pinging the device |
 | pingInterval | Ping interval in seconds, only used if `ip` is set, default `2` |
-| pingsToChange | The number of pings necessary to trigger a state change, only used if `ip` is set, default `5` |
+| pingsToChange | The number of pings necessary to trigger a state change, only used if `ip` is set, default `5`. Does nothing if `pingCommand` is specified |
 | pingTimeout | Number of seconds to wait for pinging to finish, default `1` |
 | pingCommand | Command to run in order to know if a host is up or not. If the command exits successfully (zero as the exit code) the host is considered up. If an error is thrown or the command exits with a non-zero exit code, the host is considered down |
 
@@ -214,5 +215,8 @@ npm run lint
 npm run test
 
 # Run Homebridge, Homebridge Config UI X and Homebridge WoL on the current maintainance node LTS version
-docker run --rm -it -p 8080:8080 $(docker build -q .)
+docker-compose -f integration/docker-compose.yml up --force-recreate
+
+# If you make changes to the code base, you may have to rebuild the containers before running the above command
+docker-compose -f integration/docker-compose.yml build
 ```

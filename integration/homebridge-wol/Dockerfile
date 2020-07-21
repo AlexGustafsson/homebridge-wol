@@ -1,15 +1,15 @@
 # This Dockerfile runs the integration environment using Homebridge,
 # Homebridge Config UI X and the latest maintaince LTS version of node
-# Run with: docker run --rm -it -p 8080:8080 $(docker build -q .)
 
 # Use the latest maintainance LTS version
-FROM node:10
+FROM node:10-alpine
 
 WORKDIR /etc/homebridge-wol
 
 # Install dependencies
 COPY package* ./
-RUN npm install
+RUN apk add --update --no-cache sshpass openssh && \
+    npm install
 
 # Copy application files
 COPY . .

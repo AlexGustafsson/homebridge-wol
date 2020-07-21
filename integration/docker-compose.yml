@@ -1,0 +1,35 @@
+version: '3.8'
+
+
+services:
+  homebridge-wol:
+    build:
+      context: ../
+      dockerfile: ./integration/homebridge-wol/Dockerfile
+    networks:
+      - homebridge-wol
+    ports:
+      - '8080:8080'
+      - '5353:5353'
+      - '5353:5353/udp'
+      - '51826:51826'
+
+  mac:
+    build:
+      context: ../integration/hosts/mac
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - homebridge-wol
+    ports:
+      - '2244:22'
+
+  generic:
+    image: alpine:3
+    restart: always
+    networks:
+      - homebridge-wol
+    command: sleep infinity
+
+networks:
+  homebridge-wol:

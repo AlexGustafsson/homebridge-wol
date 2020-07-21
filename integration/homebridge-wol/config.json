@@ -9,6 +9,7 @@
   },
   "accessories": [
     {
+      "accessory": "NetworkDevice",
       "name": "Localhost",
       "pingInterval": 2,
       "pingsToChange": 5,
@@ -22,8 +23,25 @@
       "log": true,
       "logPinger": false,
       "debugLog": false,
-      "returnEarly": false,
-      "accessory": "NetworkDevice"
+      "returnEarly": false
+    },
+    {
+      "accessory": "NetworkDevice",
+      "name": "MacBook Pro",
+      "ip": "mac",
+      "pingCommand": "sshpass -p root ssh -o StrictHostKeyChecking=no root@mac '[[ $(pmset -g powerstate IODisplayWrangler | tail -1 | cut -c29) -lt 4 ]] && exit 1 || exit 0'",
+      "shutdownCommand": "sshpass -p root ssh -o StrictHostKeyChecking=no root@mac kill -9 7",
+      "pingInterval": 10,
+      "pingsToChange": 1,
+      "logPinger": true,
+      "debugLog": true
+    },
+    {
+      "accessory": "NetworkDevice",
+      "name": "Generic",
+      "ip": "generic",
+      "logPinger": true,
+      "debugLog": true
     }
   ],
   "platforms": [

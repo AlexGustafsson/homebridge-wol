@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "homebridge-wol": "file:.."
+    "homebridge-wol": "file:../../"
   }
 }
