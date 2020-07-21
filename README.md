@@ -220,3 +220,14 @@ docker-compose -f integration/docker-compose.yml up --force-recreate
 # If you make changes to the code base, you may have to rebuild the containers before running the above command
 docker-compose -f integration/docker-compose.yml build
 ```
+
+The things to look out for when running the dockerized environment is:
+
+1. Is the configuration UI working correctly? That is, is the `config.schema.json` up to date?
+2. Can you interact with the accessories as expected? See the logs for full insights.
+
+The accessory `MacBook Pro` is fully hooked up to simulate a real world MacBook, with proper shutdown over SSH as well as a custom ping command.
+
+The `Generic` accessory features regular pinging using ICMP messages over IPv4.
+
+The `Localhost` accessory represents the same instance as that running the Homebridge server. It features only mock configuration. It does feature the full range of configurations available, which should help debugging the configuration UI. 
