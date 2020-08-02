@@ -46,6 +46,13 @@
         "type": "string",
         "required": false
       },
+      "pingCommandTimeout": {
+        "title": "Ping command timeout",
+        "description": "Timeout for the ping command in seconds. Use 0 (default) to disable the timeout.",
+        "type": "integer",
+        "required": false,
+        "default": 0
+      },
       "mac": {
         "title": "MAC address",
         "description": "The device's MAC address - used to send Magic Packets. Allows any format such as XX:XX:XX:XX:XX:XX or XXXXXXXXXXXX.",
@@ -64,6 +71,13 @@
         "type": "string",
         "required": false
       },
+      "startCommandTimeout": {
+        "title": "Start command timeout",
+        "description": "Timeout for the start command in seconds. Use 0 (default) to disable the timeout.",
+        "type": "integer",
+        "required": false,
+        "default": 0
+      },
       "wakeGraceTime": {
         "title": "Wake grace time",
         "description": "Number of seconds to wait after startup before checking online status and issuing the wake command.",
@@ -77,6 +91,13 @@
         "type": "string",
         "required": false
       },
+      "wakeCommandTimeout": {
+        "title": "Wake command timeout",
+        "description": "Timeout for the wake command in seconds. Use 0 (default) to disable the timeout.",
+        "type": "integer",
+        "required": false,
+        "default": 0
+      },
       "shutdownCommand": {
         "title": "Shutdown command",
         "description": "Command to run in order to shut down the remote machine.",
@@ -89,6 +110,13 @@
         "type": "integer",
         "required": false,
         "default": 15
+      },
+      "shutdownCommandTimeout": {
+        "title": "Shutdown command timeout",
+        "description": "Timeout for the shutdown command in seconds. Use 0 (default) to disable the timeout.",
+        "type": "integer",
+        "required": false,
+        "default": 0
       },
       "log": {
         "title": "Log",
@@ -162,6 +190,12 @@
           "condition": {
             "functionBody": "return (model.ip && model.ip.length > 0)"
           }
+        },
+        {
+          "key": "pingCommandTimeout",
+          "condition": {
+            "functionBody": "return (model.pingCommand && model.pingCommand.length > 0)"
+          }
         }
       ]
     },
@@ -185,6 +219,12 @@
           }
         },
         {
+          "key": "startCommandTimeout",
+          "condition": {
+            "functionBody": "return (model.startCommand && model.startCommand.length > 0)"
+          }
+        },
+        {
           "key": "wakeGraceTime",
           "condition": {
             "functionBody": "return (model.mac && model.mac.length > 0)"
@@ -194,6 +234,12 @@
           "key": "wakeCommand",
           "condition": {
             "functionBody": "return (model.mac && model.mac.length > 0)"
+          }
+        },
+        {
+          "key": "wakeCommandTimeout",
+          "condition": {
+            "functionBody": "return (model.wakeCommand && model.wakeCommand.length > 0)"
           }
         }
       ]
@@ -207,6 +253,12 @@
         "shutdownCommand",
         {
           "key": "shutdownGraceTime",
+          "condition": {
+            "functionBody": "return (model.shutdownCommand && model.shutdownCommand.length > 0)"
+          }
+        },
+        {
+          "key": "shutdownCommandTimeout",
           "condition": {
             "functionBody": "return (model.shutdownCommand && model.shutdownCommand.length > 0)"
           }

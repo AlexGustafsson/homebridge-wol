@@ -112,6 +112,7 @@ For more configuration examples, please see the wiki which contains a growing co
 | pingsToChange | The number of pings necessary to trigger a state change, only used if `ip` is set, default `5`. Does nothing if `pingCommand` is specified |
 | pingTimeout | Number of seconds to wait for pinging to finish, default `1` |
 | pingCommand | Command to run in order to know if a host is up or not. If the command exits successfully (zero as the exit code) the host is considered up. If an error is thrown or the command exits with a non-zero exit code, the host is considered down |
+| pingCommandTimeout | Timeout for the ping command in seconds. Use 0 (default) to disable the timeout |
 
 #### Turning on
 
@@ -120,8 +121,10 @@ For more configuration examples, please see the wiki which contains a growing co
 | mac | The device's MAC address - used to send Magic Packets. Allows any format such as `XX:XX:XX:XX:XX:XX` or `XXXXXXXXXXXX` |
 | broadcastAddress | The broadcast address to use when sending the Wake on LAN packet |
 | startCommand | Command to run in order to start the machine |
+| startCommandTimeout | Timeout for the start command in seconds. Use 0 (default) to disable the timeout |
 | wakeGraceTime | Number of seconds to wait after startup before checking online status and issuing the `wakeCommand`, default `45` |
 | wakeCommand | Command to run after initial startup, useful for macOS users in need of running `caffeinate` |
+| wakeCommandTimeout | Timeout for the wake command in seconds. Use 0 (default) to disable the timeout |
 
 #### Turning off
 
@@ -129,6 +132,7 @@ For more configuration examples, please see the wiki which contains a growing co
 | --- | ------------|
 | shutdownCommand | Command to run in order to shut down the remote machine |
 | shutdownGraceTime | Number of seconds to wait after shutdown before checking offline status, default `15` |
+| shutdownCommandTimeout | Timeout for the shutdown command in seconds. Use 0 (default) to disable the timeout |
 
 #### Logging
 
@@ -230,4 +234,4 @@ The accessory `MacBook Pro` is fully hooked up to simulate a real world MacBook,
 
 The `Generic` accessory features regular pinging using ICMP messages over IPv4.
 
-The `Localhost` accessory represents the same instance as that running the Homebridge server. It features only mock configuration. It does feature the full range of configurations available, which should help debugging the configuration UI. 
+The `Localhost` accessory represents the same instance as that running the Homebridge server. It features only mock configuration. It does feature the full range of configurations available, which should help debugging the configuration UI.

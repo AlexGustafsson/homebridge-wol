@@ -38,10 +38,36 @@
     },
     {
       "accessory": "NetworkDevice",
+      "name": "Generic with slow SSH",
+      "ip": "generic-ssh",
+      "shutdownCommand": "sshpass -p root ssh -o StrictHostKeyChecking=no root@generic-ssh sleep 5; kill -9 7",
+      "shutdownCommandTimeout": 2,
+      "debugLog": true
+    },
+    {
+      "accessory": "NetworkDevice",
       "name": "Generic",
       "ip": "generic",
       "logPinger": true,
       "debugLog": true
+    },
+    {
+      "accessory": "NetworkDevice",
+      "name": "Generic with ping command",
+      "ip": "generic",
+      "logPinger": true,
+      "debugLog": true,
+      "pingCommand": "ping -c 10 -i 0.1 localhost",
+      "pingCommandTimeout": 1
+    },
+    {
+      "accessory": "NetworkDevice",
+      "name": "Generic with slow ping command",
+      "ip": "generic",
+      "logPinger": true,
+      "debugLog": true,
+      "pingCommand": "ping -c 10 localhost",
+      "pingCommandTimeout": 1
     }
   ],
   "platforms": [

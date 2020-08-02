@@ -21,8 +21,14 @@ services:
     restart: always
     networks:
       - homebridge-wol
-    ports:
-      - '2244:22'
+
+  generic-ssh:
+    build:
+      context: ../integration/hosts/mac
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - homebridge-wol
 
   generic:
     image: alpine:3
