@@ -1,8 +1,7 @@
 const getNetworkDevice = require('./lib/network-device');
 
 function setup(homebridge) {
-  const NetworkDevice = getNetworkDevice(homebridge.hap);
-
+  const NetworkDevice = getNetworkDevice(homebridge);
   homebridge.registerAccessory('homebridge-wol', 'NetworkDevice', NetworkDevice);
 }
 
