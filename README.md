@@ -103,6 +103,14 @@ For more configuration examples, please see the wiki which contains a growing co
 
 ### Optional configuration
 
+#### Accessory information
+
+| Key | Description |
+| --- | ------------|
+| manufacturer | The manufacturer of the accessory. Defaults to "homebridge-wol" |
+| model | The model name of the accessory. Defaults to "NetworkDevice" |
+| serialNumber | A unique id for the accessory. See https://github.com/AlexGustafsson/homebridge-wol/issues/117 for more information |
+
 #### Pinging
 
 | Key | Description |

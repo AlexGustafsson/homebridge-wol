@@ -20,16 +20,7 @@
     "url": "git://github.com/alexgustafsson/homebridge-wol.git"
   },
   "author": "Alex Gustafsson",
-  "contributors": [
-    {
-      "name": "Tiemo Kieft",
-      "email": "me@isogram.nl"
-    },
-    {
-      "name": "Paul Curry",
-      "email": "github@cr3ation.co.uk"
-    }
-  ],
+  "contributors": [],
   "license": "ISC",
   "dependencies": {
     "ping": "^0.2.3",

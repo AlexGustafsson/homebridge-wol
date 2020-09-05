@@ -13,6 +13,24 @@
         "default": "My NetworkDevice",
         "required": false
       },
+      "manufacturer": {
+        "title": "Manufacturer",
+        "type": "string",
+        "default": "homebridge-wol",
+        "required": false
+      },
+      "model": {
+        "title": "Model",
+        "type": "string",
+        "default": "NetworkDevice",
+        "required": false
+      },
+      "serialNumber": {
+        "title": "Serial number",
+        "type": "string",
+        "default": null,
+        "required": false
+      },
       "ip": {
         "title": "IPv4 address",
         "description": "The IPv4 address to ping in order to receive current status.",
@@ -154,9 +172,7 @@
         {
           "type": "flex",
           "flex-flow": "column",
-          "items": [
-            "name"
-          ]
+          "items": ["name", "manufacturer", "model", "serialNumber"]
         }
       ]
     },
