@@ -27,7 +27,7 @@
     "wake_on_lan": "^1.0.0"
   },
   "devDependencies": {
-    "homebridge": "^1.1.3",
+    "homebridge": "^1.2.1",
     "homebridge-config-ui-x": "^4.27.1",
     "xo": "^0.33.1"
   },
