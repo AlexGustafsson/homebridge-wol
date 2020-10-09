@@ -3,10 +3,10 @@
 </p>
 <p align="center">
   <a href="https://www.npmjs.com/package/homebridge-wol">
-    <img src="https://flat.badgen.net/npm/v/homebridge-wol" alt="NPM Version" />
+    <img src="https://flat.badgen.net/npm/v/homebridge-wol" alt="npm version" />
   </a>
   <a href="https://www.npmjs.com/package/homebridge-wol">
-    <img src="https://flat.badgen.net/npm/dt/homebridge-wol" alt="Total NPM Downloads" />
+    <img src="https://flat.badgen.net/npm/dy/homebridge-wol" alt="npm downloads per year" />
   </a>
   <a href="https://github.com/homebridge/homebridge/wiki/Verified-Plugins">
     <img src="https://flat.badgen.net/badge/homebridge/verified/purple" alt="Verified by Homebridge" />
