@@ -1,8 +1,11 @@
 node_modules
 .DS_Store
+dist
 integration/homebridge-wol/persist
 integration/homebridge-wol/accessories
 integration/homebridge-wol/log.txt
 integration/homebridge-wol/package-lock.json
 integration/homebridge-wol/.uix-secrets
 integration/homebridge-wol/auth.json
+integration/homebridge-wol/.uix-dashboard.json
+integration/homebridge-wol/backups

@@ -28,12 +28,11 @@
       "serialNumber": {
         "title": "Serial number",
         "type": "string",
-        "default": null,
         "required": false
       },
-      "ip": {
-        "title": "IPv4 address",
-        "description": "The IPv4 address to ping in order to receive current status.",
+      "host": {
+        "title": "IP address or hostname",
+        "description": "The IP address or hostname to ping in order to receive current status.",
         "type": "string",
         "required": false
       },
@@ -136,23 +135,12 @@
         "required": false,
         "default": 0
       },
-      "log": {
-        "title": "Log",
-        "description": "Whether or not the plugin should log status messages.",
-        "type": "boolean",
-        "default": true
-      },
-      "logPinger": {
-        "title": "Log pinger",
-        "description": "Whether or not the plugin should log ping messages (state transitions).",
-        "type": "boolean",
-        "default": false
-      },
-      "debugLog": {
-        "title": "Log pinger",
-        "description": "Whether or not the plugin should log debug information.",
-        "type": "boolean",
-        "default": false
+      "logLevel": {
+        "title": "Log Level",
+        "description": "The syslog log level to use such as Debug, Info, Error. The default is Info. Use None to disable logging.",
+        "type": "string",
+        "enum": ["Debug", "Info", "Notice", "Warning", "Error", "Critical", "Alert", "Emergency", "None"],
+        "default": "Info"
       },
       "returnEarly": {
         "title": "Return early",
@@ -182,29 +170,29 @@
       "expandable": true,
       "title": "Pinging configuration",
       "items": [
-        "ip",
+        "host",
         {
           "key": "pingInterval",
           "condition": {
-            "functionBody": "return (model.ip && model.ip.length > 0)"
+            "functionBody": "return (model.host && model.host.length > 0)"
           }
         },
         {
           "key": "pingsToChange",
           "condition": {
-            "functionBody": "return (model.ip && model.ip.length > 0)"
+            "functionBody": "return (model.host && model.host.length > 0)"
           }
         },
         {
           "key": "pingTimeout",
           "condition": {
-            "functionBody": "return (model.ip && model.ip.length > 0)"
+            "functionBody": "return (model.host && model.host.length > 0)"
           }
         },
         {
           "key": "pingCommand",
           "condition": {
-            "functionBody": "return (model.ip && model.ip.length > 0)"
+            "functionBody": "return (model.host && model.host.length > 0)"
           }
         },
         {
@@ -287,9 +275,7 @@
       "expandable": true,
       "title": "Logging",
       "items": [
-        "log",
-        "logPinger",
-        "debugLog"
+        "logLevel"
       ]
     },
     {

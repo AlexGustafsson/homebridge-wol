@@ -3,10 +3,11 @@
   "displayName": "Homebridge WoL",
   "version": "4.3.0",
   "description": "A Wake on Lan plugin for Homebridge",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "lint": "xo",
-    "test": "rm -rf integration/homebridge-wol/accessories integration/homebridge-wol/persist && cd integration/homebridge-wol && npm install && homebridge --insecure --plugin-path node_modules --user-storage-path ./ | tee log.txt"
+    "build": "tsc",
+    "lint": "tsc --noEmit && eslint \"src/**/*.{js,ts}\" --quiet --fix",
+    "test": "rm -rf integration/homebridge-wol/accessories integration/homebridge-wol/persist && cd integration/homebridge-wol && npm install && npx homebridge --insecure --plugin-path node_modules --user-storage-path ./ | tee log.txt"
   },
   "keywords": [
     "homebridge-plugin",
@@ -23,57 +24,21 @@
   "contributors": [],
   "license": "ISC",
   "dependencies": {
-    "ping": "^0.2.3",
+    "ping": "^0.3.0",
     "wake_on_lan": "^1.0.0"
   },
   "devDependencies": {
+    "@types/node": "^14.11.8",
+    "@types/ping": "^0.2.0",
+    "@types/wake_on_lan": "0.0.28",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "eslint": "^7.11.0",
     "homebridge": "^1.2.1",
-    "homebridge-config-ui-x": "^4.27.1",
-    "xo": "^0.33.1"
+    "typescript": "^4.0.3"
   },
   "engines": {
     "node": ">=10.0.0",
-    "homebridge": ">=0.4.0"
-  },
-  "xo": {
-    "space": 2,
-    "esnext": true,
-    "rules": {
-      "curly": [
-        "error",
-        "multi-or-nest",
-        "consistent"
-      ],
-      "no-use-before-define": [
-        "error",
-        {
-          "classes": false
-        }
-      ],
-      "unicorn/catch-error-name": [
-        "error",
-        {
-          "name": "error"
-        }
-      ],
-      "dot-notation": [
-        "off"
-      ],
-      "quote-props": [
-        "off"
-      ],
-      "object-curly-spacing": [
-        "off"
-      ],
-      "no-new": [
-        "off"
-      ],
-      "padding-line-between-statements": [
-        "off"
-      ],
-      "unicorn/no-reduce": [
-        "off"
-      ]
-    }
+    "homebridge": ">=1.0.0"
   }
 }

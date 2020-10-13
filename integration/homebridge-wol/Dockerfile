@@ -7,11 +7,9 @@ FROM node:10-alpine
 WORKDIR /etc/homebridge-wol
 
 # Install dependencies
-COPY package* ./
-RUN apk add --update --no-cache sshpass openssh && \
-    npm install
+RUN apk add --update --no-cache sshpass openssh
 
-# Copy application files
+# Copy over project files
 COPY . .
 
 EXPOSE 8080

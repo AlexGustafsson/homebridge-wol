@@ -32,7 +32,7 @@ Add your devices to your `config.json`:
   {
     "accessory": "NetworkDevice",
     "name": "My MacBook",
-    "ip": "192.168.1.51",
+    "host": "192.168.1.51",
     "mac": "aa:bb:cc:dd:ee:ff"
   }
 ]
@@ -57,7 +57,7 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "accessory": "NetworkDevice",
       "name": "My Macbook",
       "mac": "<mac-address>",
-      "ip": "macbook.local",
+      "host": "macbook.local",
       "pingCommand": "ssh macbook.local 'if [[ $(pmset -g powerstate IODisplayWrangler | tail -1 | cut -c29) -lt 4 ]]; then; exit 1; else; echo 1; fi;'",
       "pingInterval": 45,
       "wakeGraceTime": 10,
@@ -69,14 +69,14 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
       "accessory": "NetworkDevice",
       "name": "My Windows Gaming Rig",
       "mac": "<mac-address>",
-      "ip": "192.168.1.151",
+      "host": "192.168.1.151",
       "shutdownCommand": "net rpc shutdown --ipaddress 192.168.1.151 --user username%password"
     },
     {
       "accessory": "NetworkDevice",
       "name": "Raspberry Pi",
       "mac": "<mac-address>",
-      "ip": "192.168.1.251",
+      "host": "192.168.1.251",
       "pingInterval": 45,
       "wakeGraceTime": 90,
       "shutdownGraceTime": 15,
@@ -85,7 +85,7 @@ To make Homebridge aware of the new plugin, you will have to add it to your conf
     {
       "accessory": "NetworkDevice",
       "name": "My NAS",
-      "ip": "192.168.1.148",
+      "host": "192.168.1.148",
       "log": false,
       "broadcastAddress": "172.16.1.255"
     }
@@ -99,7 +99,6 @@ For more configuration examples, please see the wiki which contains a growing co
 | Key | Description |
 | --- | ------------|
 | accessory | The type of accessory - has to be "NetworkDevice" |
-| name | The name of the device - used in HomeKit apps as well as Siri, default `My NetworkDevice` |
 
 ### Optional configuration
 
@@ -107,17 +106,18 @@ For more configuration examples, please see the wiki which contains a growing co
 
 | Key | Description |
 | --- | ------------|
+| name | The name of the device - used in HomeKit apps as well as Siri, default `My NetworkDevice` |
 | manufacturer | The manufacturer of the accessory. Defaults to "homebridge-wol" |
 | model | The model name of the accessory. Defaults to "NetworkDevice" |
-| serialNumber | A unique id for the accessory. See https://github.com/AlexGustafsson/homebridge-wol/issues/117 for more information |
+| serialNumber | A unique id for the accessory. Defaults to a random id which is reset each time the server restarts. See https://github.com/AlexGustafsson/homebridge-wol/issues/117 for more information |
 
 #### Pinging
 
 | Key | Description |
 | --- | ------------|
-| ip | The address or hostname of the device - used to check current status by pinging the device |
-| pingInterval | Ping interval in seconds, only used if `ip` is set, default `2` |
-| pingsToChange | The number of pings necessary to trigger a state change, only used if `ip` is set, default `5`. Does nothing if `pingCommand` is specified |
+| host | The IP address or hostname to ping in order to receive current status |
+| pingInterval | Ping interval in seconds, only used if `host` is set, default `2` |
+| pingsToChange | The number of pings necessary to trigger a state change, only used if `host` is set, default `5`. Does nothing if `pingCommand` is specified |
 | pingTimeout | Number of seconds to wait for pinging to finish, default `1` |
 | pingCommand | Command to run in order to know if a host is up or not. If the command exits successfully (zero as the exit code) the host is considered up. If an error is thrown or the command exits with a non-zero exit code, the host is considered down |
 | pingCommandTimeout | Timeout for the ping command in seconds. Use 0 (default) to disable the timeout |
@@ -146,9 +146,7 @@ For more configuration examples, please see the wiki which contains a growing co
 
 | Key | Description |
 | --- | ------------|
-| log | Whether or not the plugin should log status messages, default `true` |
-| logPinger | Whether or not the plugin should log ping messages (state transitions), default `false` |
-| debugLog | Whether or not the plugin should log debug information, default `false` |
+| logLevel | The syslog log level to use such as `Debug`, `Info`, `Error`. The default is `Info`. Use `None` to disable logging |
 
 #### Miscellaneous
 
@@ -216,13 +214,19 @@ Beyond all helpful issues and wiki posts, this repository has seen modifications
 # Clone project
 git clone https://github.com/AlexGustafsson/homebridge-wol.git && cd homebridge-wol
 
-# Set up for development
-npm install && npm link
+# Install dependencies
+npm install
+
+# Build the project
+npm run build
+
+# Link it (if running homebridge locally)
+npm link
 
 # Make sure linting passes
 npm run lint
 
-# Try to start Homebridge with the Homebridge Config UI X - available on localhost:8080
+# Try to start Homebridge with the Homebridge Config UI X locally - available on localhost:8080
 # with default credentials admin:admin
 npm run test
 

@@ -1,85 +1,107 @@
 {
-  "bridge": {
-    "name": "Homebridge",
-    "username": "CC:22:3D:E3:CE:30",
-    "manufacturer": "homebridge.io",
-    "model": "homebridge",
-    "port": 51826,
-    "pin": "031-45-154"
-  },
-  "accessories": [
-    {
-      "accessory": "NetworkDevice",
-      "name": "Localhost",
-      "pingInterval": 2,
-      "pingsToChange": 5,
-      "pingTimeout": 1,
-      "wakeGraceTime": 45,
-      "shutdownGraceTime": 15,
-      "ip": "127.0.0.1",
-      "startCommand": "echo 'starting'",
-      "wakeCommand": "echo 'waking'",
-      "shutdownCommand": "echo 'shutting down'",
-      "log": true,
-      "logPinger": false,
-      "debugLog": false,
-      "returnEarly": false
+    "bridge": {
+        "name": "Homebridge",
+        "username": "CC:22:3D:E3:CE:30",
+        "manufacturer": "homebridge.io",
+        "model": "homebridge",
+        "port": 51826,
+        "pin": "031-45-154"
     },
-    {
-      "accessory": "NetworkDevice",
-      "name": "MacBook Pro",
-      "ip": "mac",
-      "pingCommand": "sshpass -p root ssh -o StrictHostKeyChecking=no root@mac '[[ $(pmset -g powerstate IODisplayWrangler | tail -1 | cut -c29) -lt 4 ]] && exit 1 || exit 0'",
-      "shutdownCommand": "sshpass -p root ssh -o StrictHostKeyChecking=no root@mac kill -9 7",
-      "pingInterval": 10,
-      "pingsToChange": 1,
-      "logPinger": true,
-      "debugLog": true
-    },
-    {
-      "accessory": "NetworkDevice",
-      "name": "Generic with slow SSH",
-      "ip": "generic-ssh",
-      "shutdownCommand": "sshpass -p root ssh -o StrictHostKeyChecking=no root@generic-ssh sleep 5; kill -9 7",
-      "shutdownCommandTimeout": 2,
-      "debugLog": true
-    },
-    {
-      "accessory": "NetworkDevice",
-      "name": "Generic",
-      "ip": "generic",
-      "logPinger": true,
-      "debugLog": true
-    },
-    {
-      "accessory": "NetworkDevice",
-      "name": "Generic with ping command",
-      "ip": "generic",
-      "logPinger": true,
-      "debugLog": true,
-      "pingCommand": "ping -c 10 -i 0.1 localhost",
-      "pingCommandTimeout": 1
-    },
-    {
-      "accessory": "NetworkDevice",
-      "name": "Generic with slow ping command",
-      "ip": "generic",
-      "logPinger": true,
-      "debugLog": true,
-      "pingCommand": "ping -c 10 localhost",
-      "pingCommandTimeout": 1
-    }
-  ],
-  "platforms": [
-    {
-      "platform": "config",
-      "name": "Config",
-      "port": 8080,
-      "sudo": false,
-      "log": {
-        "method": "file",
-        "path": "log.txt"
-      }
-    }
-  ]
+    "accessories": [
+        {
+            "name": "Localhost",
+            "manufacturer": "homebridge-wol",
+            "model": "NetworkDevice",
+            "pingInterval": 2,
+            "pingsToChange": 5,
+            "pingTimeout": 1,
+            "pingCommandTimeout": 0,
+            "startCommand": "echo 'starting'",
+            "startCommandTimeout": 0,
+            "wakeGraceTime": 45,
+            "wakeCommand": "echo 'waking'",
+            "wakeCommandTimeout": 0,
+            "shutdownCommand": "echo 'shutting down'",
+            "shutdownGraceTime": 15,
+            "shutdownCommandTimeout": 0,
+            "logLevel": "None",
+            "returnEarly": false,
+            "accessory": "NetworkDevice"
+        },
+        {
+            "accessory": "NetworkDevice",
+            "name": "MacBook Pro",
+            "host": "mac",
+            "pingCommand": "sshpass -p root ssh -o StrictHostKeyChecking=no root@mac '[[ $(pmset -g powerstate IODisplayWrangler | tail -1 | cut -c29) -lt 4 ]] && exit 1 || exit 0'",
+            "shutdownCommand": "sshpass -p root ssh -o StrictHostKeyChecking=no root@mac kill -9 7",
+            "pingInterval": 10,
+            "pingsToChange": 1,
+            "logLevel": "Debug"
+        },
+        {
+            "name": "Generic with slow SSH",
+            "manufacturer": "homebridge-wol",
+            "model": "NetworkDevice",
+            "host": "generic-ssh",
+            "pingInterval": 2,
+            "pingsToChange": 5,
+            "pingTimeout": 1,
+            "pingCommandTimeout": 0,
+            "startCommandTimeout": 0,
+            "wakeGraceTime": 45,
+            "wakeCommandTimeout": 0,
+            "shutdownCommand": "sshpass -p root ssh -o StrictHostKeyChecking=no root@generic-ssh sleep 5; kill -9 7",
+            "shutdownGraceTime": 15,
+            "shutdownCommandTimeout": 2,
+            "logLevel": "Debug",
+            "returnEarly": false,
+            "accessory": "NetworkDevice"
+        },
+        {
+            "accessory": "NetworkDevice",
+            "name": "Generic",
+            "host": "generic",
+            "logLevel": "Debug"
+        },
+        {
+            "accessory": "NetworkDevice",
+            "name": "Generic with ping command",
+            "host": "generic",
+            "log": true,
+            "pingCommand": "ping -c 10 -i 0.1 localhost",
+            "pingCommandTimeout": 1
+        },
+        {
+            "name": "Generic with slow ping command",
+            "manufacturer": "homebridge-wol",
+            "model": "NetworkDevice",
+            "serialNumber": "100101010",
+            "host": "generic",
+            "pingInterval": 2,
+            "pingsToChange": 5,
+            "pingTimeout": 1,
+            "pingCommand": "ping -c 10 localhost",
+            "pingCommandTimeout": 1,
+            "startCommandTimeout": 0,
+            "wakeGraceTime": 45,
+            "wakeCommandTimeout": 0,
+            "shutdownGraceTime": 15,
+            "shutdownCommandTimeout": 0,
+            "logLevel": "Debug",
+            "returnEarly": false,
+            "accessory": "NetworkDevice"
+        }
+    ],
+    "platforms": [
+        {
+            "platform": "config",
+            "name": "Config",
+            "port": 8080,
+            "sudo": false,
+            "log": {
+                "method": "file",
+                "path": "log.txt"
+            }
+        }
+    ]
 }
