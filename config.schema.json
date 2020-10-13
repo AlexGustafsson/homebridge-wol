@@ -172,7 +172,7 @@
         {
           "type": "flex",
           "flex-flow": "column",
-          "items": ["name", "manufacturer", "model", "serialNumber"]
+          "items": ["name"]
         }
       ]
     },
@@ -298,7 +298,10 @@
       "expandable": true,
       "title": "Miscellaneous",
       "items": [
-        "returnEarly"
+        "returnEarly",
+        "manufacturer",
+        "model",
+        "serialNumber"
       ]
     }
   ]
