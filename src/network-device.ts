@@ -58,8 +58,6 @@ export default class NetworkDevice {
       this.pinger.on("stateChanged", this.stateChanged.bind(this));
       this.pinger.start();
     }
-
-    console.log(config, api);
   }
 
   setStatus(newStatus: NetworkDeviceStatus): void {
