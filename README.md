@@ -116,11 +116,19 @@ For more configuration examples, please see the wiki which contains a growing co
 | Key | Description |
 | --- | ------------|
 | host | The IP address or hostname to ping in order to receive current status |
-| pingInterval | Ping interval in seconds, only used if `host` is set, default `2` |
-| pingsToChange | The number of pings necessary to trigger a state change, only used if `host` is set, default `5`. Does nothing if `pingCommand` is specified |
+| pingInterval | Ping interval in seconds, only used if `host` is set, default `2`. Same as that for pinging with a command |
+| pingsToChange | The number of pings necessary to trigger a state change, only used if `host` is set, default `5` |
 | pingTimeout | Number of seconds to wait for pinging to finish, default `1` |
+
+#### Pinging using a command
+
+| Key | Description |
+| --- | ------------|
 | pingCommand | Command to run in order to know if a host is up or not. If the command exits successfully (zero as the exit code) the host is considered up. If an error is thrown or the command exits with a non-zero exit code, the host is considered down |
 | pingCommandTimeout | Timeout for the ping command in seconds. Use 0 (default) to disable the timeout |
+| pingInterval | Ping interval in seconds, only used if `host` is set, default `2`. Same as that for pinging |
+
+_Note: these settings render those mentioned in the above section useless._
 
 #### Turning on
 

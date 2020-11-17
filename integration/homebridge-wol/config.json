@@ -31,11 +31,9 @@
         {
             "accessory": "NetworkDevice",
             "name": "MacBook Pro",
-            "host": "mac",
             "pingCommand": "sshpass -p root ssh -o StrictHostKeyChecking=no root@mac '[[ $(pmset -g powerstate IODisplayWrangler | tail -1 | cut -c29) -lt 4 ]] && exit 1 || exit 0'",
             "shutdownCommand": "sshpass -p root ssh -o StrictHostKeyChecking=no root@mac kill -9 7",
             "pingInterval": 10,
-            "pingsToChange": 1,
             "logLevel": "Debug"
         },
         {

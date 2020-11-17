@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "homebridge-wol": "file:../../",
-    "homebridge-config-ui-x": "^4.29.0"
+    "homebridge-config-ui-x": "^4.29.0",
+    "homebridge-wol": "file:../../"
   }
 }

@@ -188,15 +188,26 @@
           "condition": {
             "functionBody": "return (model.host && model.host.length > 0)"
           }
-        },
+        }
+      ]
+    },
+    {
+      "ref": "pingingCommand",
+      "type": "fieldset",
+      "expandable": true,
+      "title": "Pinging command configuration",
+      "items": [
         {
-          "key": "pingCommand",
-          "condition": {
-            "functionBody": "return (model.host && model.host.length > 0)"
-          }
+          "key": "pingCommand"
         },
         {
           "key": "pingCommandTimeout",
+          "condition": {
+            "functionBody": "return (model.pingCommand && model.pingCommand.length > 0)"
+          }
+        },
+        {
+          "key": "pingInterval",
           "condition": {
             "functionBody": "return (model.pingCommand && model.pingCommand.length > 0)"
           }
