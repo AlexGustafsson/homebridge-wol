@@ -114,7 +114,7 @@ export class NetworkDeviceConfig {
     if (type !== "string")
       throw new Error(`Got incorrect value type for config key '${key}' expected string, got '${type}'`);
 
-    if (!Object.values(NetworkDeviceLogLevel).includes(config[key]))
+    if (!Object.values(NetworkDeviceLogLevel).includes(config[key] as string))
       throw new Error(`Got incorrect log level for config key '${key}': '${config[key]}'`);
 
     return NetworkDeviceLogLevel[config[key] as keyof typeof NetworkDeviceLogLevel];
