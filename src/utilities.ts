@@ -12,7 +12,7 @@ export const exec = promisify(execSync);
 * @param options Options to use.
 */
 export function wake(macAddress: string, options: WakeOptions) {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     wol.wake(macAddress, options, (error: Error) => {
       if (error)
         return reject(error);
