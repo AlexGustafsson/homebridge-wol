@@ -22,7 +22,7 @@
   },
   "author": "Alex Gustafsson",
   "contributors": [],
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^15.12.2",
     "@types/ping": "^0.2.0",
