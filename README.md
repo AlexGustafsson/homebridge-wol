@@ -49,7 +49,9 @@ Add your devices to your `config.json`:
 <a id="configuration"></a>
 ## Configuration
 
-To make Homebridge aware of the new plugin, you will have to add it to your configuration usually found in `/root/.homebridge/config.json` or `/home/username/.homebridge/config.json`. If the file does not exist, you can create it following the [config sample](https://github.com/nfarina/homebridge/blob/master/config-sample.json). Somewhere inside that file you should see a key named `accessories`. This is where you can add your computer as shown here:
+To make Homebridge aware of the new plugin, you will have to add it to your configuration usually found in `/root/.homebridge/config.json` or `/home/username/.homebridge/config.json`. If the file does not exist, you can create it following the [config sample](https://github.com/nfarina/homebridge/blob/master/config-sample.json). Somewhere inside that file you should see a key named `accessories`. There you can add configurations like the following.
+
+Note that these are only examples to showcase the different possible configurations. Read through [the configuration section below](#configuration) for detailed information.
 
  ```json
 "accessories": [
@@ -135,7 +137,7 @@ _Note: these settings render those mentioned in the above section useless._
 | Key | Description |
 | --- | ------------|
 | mac | The device's MAC address - used to send Magic Packets. Allows any format such as `XX:XX:XX:XX:XX:XX` or `XXXXXXXXXXXX` |
-| broadcastAddress | The broadcast address to use when sending the Wake on LAN packet |
+| broadcastAddress | The broadcast address to use when sending the Wake on LAN packet. Only used in rare cases. Defaults to `255.255.255.255` |
 | startCommand | Command to run in order to start the machine |
 | startCommandTimeout | Timeout for the start command in seconds. Use 0 (default) to disable the timeout |
 | wakeGraceTime | Number of seconds to wait after startup before checking online status and issuing the `wakeCommand`, default `45` |
