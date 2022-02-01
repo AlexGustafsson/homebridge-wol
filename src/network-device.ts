@@ -10,9 +10,10 @@ import {
 } from "homebridge";
 
 import Pinger from "./pinger";
-import {wake, wait, exec} from "./utilities";
-import {NetworkDeviceConfig} from "./config";
-import {NetworkDeviceLogger} from "./logging";
+import { wake, wait, exec } from "./utilities";
+import { NetworkDeviceConfig } from "./config";
+import { NetworkDeviceLogger } from "./logging";
+import { ExecException } from "child_process";
 
 enum NetworkDeviceStatus {
   Online = "Online",
@@ -148,9 +149,9 @@ export default class NetworkDevice {
       this.log.debug("Attempting to start device by sending a WoL packet");
 
       try {
-        await wake(this.config.mac, {address: this.config.broadcastAddress as (string | undefined)});
+        await wake(this.config.mac, { address: this.config.broadcastAddress as (string | undefined) });
       } catch (error) {
-        this.log.error("An error occured while trying to start");
+        this.log.error("An error occured while trying to start the device using WoL");
         this.log.debug(error);
       }
 
@@ -162,9 +163,9 @@ export default class NetworkDevice {
       this.log.info("Attempting to start the device using command \"%s\"", commandName);
 
       try {
-        await exec(this.config.startCommand, {timeout: this.config.startCommandTimeout});
+        await exec(this.config.startCommand, { timeout: this.config.startCommandTimeout });
       } catch (error) {
-        this.log.error("An error occured while trying to start the device");
+        this.log.error("HWOL-4001 An error occured while trying to start the device. This is most likely not an issue with homebridge-wol itself. For more information see https://github.com/AlexGustafsson/homebridge-wol/wiki/Frequently-Asked-Questions#hwol-4001");
         this.log.debug(error);
       }
 
@@ -182,9 +183,9 @@ export default class NetworkDevice {
       this.log.info("Attempting to wake up the device using \"%s\"", commandName);
 
       try {
-        await exec(this.config.wakeCommand, {timeout: this.config.wakeCommandTimeout});
+        await exec(this.config.wakeCommand, { timeout: this.config.wakeCommandTimeout });
       } catch (error) {
-        this.log.error("An error occured while trying to wake the device");
+        this.log.error("HWOL-4001 An error occured while trying to wake the device. This is most likely not an issue with homebridge-wol itself. For more information see https://github.com/AlexGustafsson/homebridge-wol/wiki/Frequently-Asked-Questions#hwol-4001");
         this.log.debug(error);
       }
     }
@@ -212,9 +213,9 @@ export default class NetworkDevice {
       this.log.info("Attempting to shut down the device using \"%s\"", commandName);
 
       try {
-        await exec(this.config.shutdownCommand, {timeout: this.config.shutdownCommandTimeout});
+        await exec(this.config.shutdownCommand, { timeout: this.config.shutdownCommandTimeout });
       } catch (error) {
-        this.log.error("An error occured while trying to shut down the device");
+        this.log.error("HWOL-4001 An error occured while trying to shut down the device. This is most likely not an issue with homebridge-wol itself. For more information see https://github.com/AlexGustafsson/homebridge-wol/wiki/Frequently-Asked-Questions#hwol-4001");
         this.log.debug(error);
       }
 
