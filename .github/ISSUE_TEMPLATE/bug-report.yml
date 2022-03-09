@@ -1,0 +1,84 @@
+name: Bug Report
+description: Template for bug reporting
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+        If what you're reporting is not a bug or issue with the plugin directly, please create a new discussion: https://github.com/AlexGustafsson/homebridge-wol/discussions.
+
+        Example of issues that are not bugs or related to this plugin:
+
+        * Wake command, start command or shutdown command do not work - this is user-supplied input and is executed by the plugin just like it would be executed if you were to type it in your own terminal
+
+        Example of issues that are helpful to the project:
+
+        * Feature suggestions - we love to hear what you envision for this project
+        * Bug reports - is there a typo or badly handled edge case? We'd love to hear about it!
+  - type: textarea
+    id: backstory
+    attributes:
+      label: Backstory
+      description: Please describe how you came across this issue.
+    validations:
+      required: false
+  - type: textarea
+    id: issue
+    attributes:
+      label: Issue
+      description: Please explain the issue in-depth, what you think happened.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Environment
+      description: |
+        examples:
+          - **os and os version**: Ubuntu 20.04
+          - **node version**: 13.14.0
+          - **homebridge version**: 7.6.3
+          - **homebridge-wol version**: 5.0.0
+      render: Markdown
+      value: |
+          - os and os version:
+          - node version:
+          - homebridge version:
+          - homebridge-wol version:
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Configuration
+      description: Please paste your homebridge config.json here.
+      placeholder: |
+        IMPORTANT!
+
+        Remove any MAC addresses and secrets from the configuration by
+        exchanging them with something else.
+  - type: textarea
+    attributes:
+      label: Logs
+      description: Follow the steps and paste the logs.
+      render: Markdown
+      value: |
+        When I follow these steps:
+        1. Make sure `logLevel` is set to `Debug` on all `NetworkDevice` accessories
+        2. Run `homebridge`
+        3. Let it run for a couple of minutes
+        4. Try to turn a device on or off using the plugin
+        5. Wait one minute
+        6. Repeat step 4
+
+        I get the following log:
+        ```
+        Please paste your log here
+        ```
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Notes
+      description: Please write about things that you did not see fit the above headers.
