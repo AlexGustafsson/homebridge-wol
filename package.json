@@ -24,21 +24,21 @@
   "contributors": [],
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^15.12.2",
-    "@types/ping": "^0.2.0",
-    "@types/wake_on_lan": "^0.0.28",
-    "@typescript-eslint/eslint-plugin": "^4.26.1",
-    "@typescript-eslint/parser": "^4.26.1",
-    "eslint": "^7.28.0",
-    "homebridge": "^1.3.4",
-    "typescript": "^4.3.2"
+    "@types/node": "^18.0.0",
+    "@types/ping": "^0.4.1",
+    "@types/wake_on_lan": "^0.0.30",
+    "@typescript-eslint/eslint-plugin": "^5.30.3",
+    "@typescript-eslint/parser": "^5.30.3",
+    "eslint": "^8.19.0",
+    "homebridge": "^1.3.9",
+    "typescript": "^4.7.4"
   },
   "engines": {
     "node": ">=10.0.0",
     "homebridge": ">=1.0.0"
   },
   "dependencies": {
-    "ping": "^0.4.1",
+    "ping": "^0.4.2",
     "wake_on_lan": "^1.0.0"
   }
 }
