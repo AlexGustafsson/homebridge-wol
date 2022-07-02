@@ -43,10 +43,10 @@ body:
           - **homebridge-wol version**: 5.0.0
       render: Markdown
       value: |
-          - os and os version:
-          - node version:
-          - homebridge version:
-          - homebridge-wol version:
+        - os and os version:
+        - node version:
+        - homebridge version:
+        - homebridge-wol version:
     validations:
       required: true
   - type: textarea

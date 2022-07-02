@@ -1,4 +1,4 @@
-import {Logger} from "homebridge";
+import { Logger } from "homebridge";
 
 export enum NetworkDeviceLogLevel {
   Debug = 7,
@@ -9,12 +9,12 @@ export enum NetworkDeviceLogLevel {
   Critical = 2,
   Alert = 1,
   Emergency = 0,
-  None = -1
+  None = -1,
 }
 
 export class NetworkDeviceLogger {
-  upstream: Logger
-  namespace: string
+  upstream: Logger;
+  namespace: string;
 
   level: NetworkDeviceLogLevel = NetworkDeviceLogLevel.Info;
 
@@ -23,7 +23,7 @@ export class NetworkDeviceLogger {
     this.namespace = namespace;
   }
 
-  debug(message: string, ...parameters: any[]): void {
+  debug(message: unknown, ...parameters: any[]): void {
     // Use info instead of debug to control the level here instead of letting
     // homebridge take care of it - allows for it to be easily configured
     // per accessory
@@ -31,17 +31,17 @@ export class NetworkDeviceLogger {
       this.upstream.info(`[${this.namespace}] ${message}`, ...parameters);
   }
 
-  info(message: string, ...parameters: any[]): void {
+  info(message: unknown, ...parameters: any[]): void {
     if (this.level >= NetworkDeviceLogLevel.Info)
       this.upstream.info(`[${this.namespace}] ${message}`, ...parameters);
   }
 
-  warn(message: string, ...parameters: any[]): void {
+  warn(message: unknown, ...parameters: any[]): void {
     if (this.level >= NetworkDeviceLogLevel.Warning)
       this.upstream.warn(`[${this.namespace}] ${message}`, ...parameters);
   }
 
-  error(message: string, ...parameters: any[]): void {
+  error(message: unknown, ...parameters: any[]): void {
     if (this.level >= NetworkDeviceLogLevel.Error)
       this.upstream.error(`[${this.namespace}] ${message}`, ...parameters);
   }

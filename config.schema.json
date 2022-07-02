@@ -139,7 +139,17 @@
         "title": "Log Level",
         "description": "The syslog log level to use such as Debug, Info, Error. The default is Info. Use None to disable logging.",
         "type": "string",
-        "enum": ["Debug", "Info", "Notice", "Warning", "Error", "Critical", "Alert", "Emergency", "None"],
+        "enum": [
+          "Debug",
+          "Info",
+          "Notice",
+          "Warning",
+          "Error",
+          "Critical",
+          "Alert",
+          "Emergency",
+          "None"
+        ],
         "default": "Info"
       },
       "returnEarly": {
@@ -285,21 +295,14 @@
       "type": "fieldset",
       "expandable": true,
       "title": "Logging",
-      "items": [
-        "logLevel"
-      ]
+      "items": ["logLevel"]
     },
     {
       "ref": "miscellaneous",
       "type": "fieldset",
       "expandable": true,
       "title": "Miscellaneous",
-      "items": [
-        "returnEarly",
-        "manufacturer",
-        "model",
-        "serialNumber"
-      ]
+      "items": ["returnEarly", "manufacturer", "model", "serialNumber"]
     }
   ]
 }

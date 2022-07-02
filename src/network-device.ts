@@ -1,7 +1,6 @@
 import {
   API,
   Service,
-  Characteristic,
   Logger,
   AccessoryConfig,
   CharacteristicSetCallback,
@@ -13,7 +12,6 @@ import Pinger from "./pinger";
 import { wake, wait, exec } from "./utilities";
 import { NetworkDeviceConfig } from "./config";
 import { NetworkDeviceLogger } from "./logging";
-import { ExecException } from "child_process";
 
 enum NetworkDeviceStatus {
   Online = "Online",
@@ -76,7 +74,7 @@ export default class NetworkDevice {
     // Debouncing - only react to a change if it has actually changed
     if (newStatus !== this.status) {
       this.log.info(
-        'Device went from status "%s" to "%s"',
+        "Device went from status \"%s\" to \"%s\"",
         this.status,
         newStatus
       );
@@ -183,7 +181,7 @@ export default class NetworkDevice {
         this.log.error(
           "An error occurred while trying to start the device using WoL"
         );
-        this.log.debug(error);
+        this.log.debug(`${error}`);
       }
 
       woke = true;
@@ -192,7 +190,7 @@ export default class NetworkDevice {
     if (this.config.startCommand) {
       const commandName = this.config.startCommand.split(" ")[0];
       this.log.info(
-        'Attempting to start the device using command "%s"',
+        "Attempting to start the device using command \"%s\"",
         commandName
       );
 
@@ -221,7 +219,7 @@ export default class NetworkDevice {
     // Wake up using a wake command if available
     if (woke && this.config.wakeCommand) {
       const commandName = this.config.wakeCommand.split(" ")[0];
-      this.log.info('Attempting to wake up the device using "%s"', commandName);
+      this.log.info("Attempting to wake up the device using \"%s\"", commandName);
 
       try {
         await exec(this.config.wakeCommand, {
@@ -254,7 +252,7 @@ export default class NetworkDevice {
     if (this.config.shutdownCommand) {
       const commandName = this.config.shutdownCommand.split(" ")[0];
       this.log.info(
-        'Attempting to shut down the device using "%s"',
+        "Attempting to shut down the device using \"%s\"",
         commandName
       );
 

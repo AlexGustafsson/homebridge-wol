@@ -1,36 +1,36 @@
-import {AccessoryConfig} from "homebridge";
+import { AccessoryConfig } from "homebridge";
 
-import {NetworkDeviceLogLevel} from "./logging";
+import { NetworkDeviceLogLevel } from "./logging";
 
 export class NetworkDeviceConfig {
-  name: string = "My NetworkDevice";
+  name = "My NetworkDevice";
 
-  manufacturer: string = "homebridge-wol";
-  model: string = "NetworkDevice";
+  manufacturer = "homebridge-wol";
+  model = "NetworkDevice";
   serialNumber: string;
 
   host: string | null = null;
-  pingInterval: number = 2;
-  pingsToChange: number = 5;
-  pingTimeout: number = 1;
+  pingInterval = 2;
+  pingsToChange = 5;
+  pingTimeout = 1;
   pingCommand: string | null = null;
-  pingCommandTimeout: number = 0;
+  pingCommandTimeout = 0;
 
   mac: string | null = null;
   broadcastAddress: string | null = null;
   startCommand: string | null = null;
-  startCommandTimeout: number = 0;
-  wakeGraceTime: number = 45;
+  startCommandTimeout = 0;
+  wakeGraceTime = 45;
   wakeCommand: string | null = null;
-  wakeCommandTimeout: number = 0;
+  wakeCommandTimeout = 0;
 
   shutdownCommand: string | null = null;
-  shutdownGraceTime: number = 15;
-  shutdownCommandTimeout: number = 0;
+  shutdownGraceTime = 15;
+  shutdownCommandTimeout = 0;
 
   logLevel: NetworkDeviceLogLevel = NetworkDeviceLogLevel.Info;
 
-  returnEarly: boolean = false;
+  returnEarly = false;
 
   constructor(config: AccessoryConfig) {
     // WARNING!
@@ -44,79 +44,145 @@ export class NetworkDeviceConfig {
 
     this.name = this.getString(config, "name", this.name) as string;
 
-    this.manufacturer = this.getString(config, "manufacturer", this.manufacturer) as string;
+    this.manufacturer = this.getString(
+      config,
+      "manufacturer",
+      this.manufacturer
+    ) as string;
     this.model = this.getString(config, "model", this.model) as string;
-    this.serialNumber = this.getString(config, "serialNumber", new Array(4).fill(null).map(_ => Math.round(Math.random() * 1e5).toString()).join("-")) as string;
+    this.serialNumber = this.getString(
+      config,
+      "serialNumber",
+      new Array(4)
+        .fill(null)
+        .map((_) => Math.round(Math.random() * 1e5).toString())
+        .join("-")
+    ) as string;
 
     this.host = this.getString(config, "host", this.host);
-    this.pingInterval = this.getNumber(config, "pingInterval", this.pingInterval) * 1000;
-    this.pingsToChange = this.getNumber(config, "pingsToChange", this.pingsToChange);
-    this.pingTimeout = this.getNumber(config, "pingTimeout", this.pingTimeout) * 1000;
+    this.pingInterval =
+      this.getNumber(config, "pingInterval", this.pingInterval) * 1000;
+    this.pingsToChange = this.getNumber(
+      config,
+      "pingsToChange",
+      this.pingsToChange
+    );
+    this.pingTimeout =
+      this.getNumber(config, "pingTimeout", this.pingTimeout) * 1000;
     this.pingCommand = this.getString(config, "pingCommand", this.pingCommand);
-    this.pingCommandTimeout = this.getNumber(config, "pingCommandTimeout", this.pingCommandTimeout) * 1000;
+    this.pingCommandTimeout =
+      this.getNumber(config, "pingCommandTimeout", this.pingCommandTimeout) *
+      1000;
 
     this.mac = this.getString(config, "mac", this.mac);
-    this.broadcastAddress = this.getString(config, "broadcastAddress", this.broadcastAddress);
-    this.startCommand = this.getString(config, "startCommand", this.startCommand);
-    this.startCommandTimeout = this.getNumber(config, "startCommandTimeout", this.startCommandTimeout) * 1000;
-    this.wakeGraceTime = this.getNumber(config, "wakeGraceTime", this.wakeGraceTime) * 1000;
+    this.broadcastAddress = this.getString(
+      config,
+      "broadcastAddress",
+      this.broadcastAddress
+    );
+    this.startCommand = this.getString(
+      config,
+      "startCommand",
+      this.startCommand
+    );
+    this.startCommandTimeout =
+      this.getNumber(config, "startCommandTimeout", this.startCommandTimeout) *
+      1000;
+    this.wakeGraceTime =
+      this.getNumber(config, "wakeGraceTime", this.wakeGraceTime) * 1000;
     this.wakeCommand = this.getString(config, "wakeCommand", this.wakeCommand);
-    this.wakeCommandTimeout = this.getNumber(config, "wakeCommandTimeout", this.wakeCommandTimeout) * 1000;
+    this.wakeCommandTimeout =
+      this.getNumber(config, "wakeCommandTimeout", this.wakeCommandTimeout) *
+      1000;
 
-
-    this.shutdownCommand = this.getString(config, "shutdownCommand", this.shutdownCommand);
-    this.shutdownGraceTime = this.getNumber(config, "shutdownGraceTime", this.shutdownGraceTime) * 1000;
-    this.shutdownCommandTimeout = this.getNumber(config, "shutdownCommandTimeout", this.shutdownCommandTimeout) * 1000;
+    this.shutdownCommand = this.getString(
+      config,
+      "shutdownCommand",
+      this.shutdownCommand
+    );
+    this.shutdownGraceTime =
+      this.getNumber(config, "shutdownGraceTime", this.shutdownGraceTime) *
+      1000;
+    this.shutdownCommandTimeout =
+      this.getNumber(
+        config,
+        "shutdownCommandTimeout",
+        this.shutdownCommandTimeout
+      ) * 1000;
 
     this.logLevel = this.getLogLevel(config, "logLevel", this.logLevel);
 
     this.returnEarly = this.getBoolean(config, "returnEarly", this.returnEarly);
   }
 
-  private getString(config: AccessoryConfig, key: string, defaultValue: string | null): string | null {
-    if (typeof(config[key]) === "undefined")
-      return defaultValue;
+  private getString(
+    config: AccessoryConfig,
+    key: string,
+    defaultValue: string | null
+  ): string | null {
+    if (typeof config[key] === "undefined") return defaultValue;
 
-    const type = typeof(config[key]);
+    const type = typeof config[key];
     if (type !== "string")
-      throw new Error(`Got incorrect value type for config key '${key}' expected string, got '${type}'`);
+      throw new Error(
+        `Got incorrect value type for config key '${key}' expected string, got '${type}'`
+      );
 
     return config[key] as string;
   }
 
-  private getNumber(config: AccessoryConfig, key: string, defaultValue: number): number {
-    if (typeof(config[key]) === "undefined")
-      return defaultValue;
+  private getNumber(
+    config: AccessoryConfig,
+    key: string,
+    defaultValue: number
+  ): number {
+    if (typeof config[key] === "undefined") return defaultValue;
 
-    const type = typeof(config[key]);
+    const type = typeof config[key];
     if (type !== "number")
-      throw new Error(`Got incorrect value type for config key '${key}' expected number, got '${type}'`);
+      throw new Error(
+        `Got incorrect value type for config key '${key}' expected number, got '${type}'`
+      );
 
     return config[key] as number;
   }
 
-  private getBoolean(config: AccessoryConfig, key: string, defaultValue: boolean): boolean {
-    if (typeof(config[key]) === "undefined")
-      return defaultValue;
+  private getBoolean(
+    config: AccessoryConfig,
+    key: string,
+    defaultValue: boolean
+  ): boolean {
+    if (typeof config[key] === "undefined") return defaultValue;
 
-    const type = typeof(config[key]);
+    const type = typeof config[key];
     if (type !== "boolean")
-      throw new Error(`Got incorrect value type for config key '${key}' expected boolean, got '${type}'`);
+      throw new Error(
+        `Got incorrect value type for config key '${key}' expected boolean, got '${type}'`
+      );
 
     return config[key] as boolean;
   }
 
-  private getLogLevel(config: AccessoryConfig, key: string, defaultValue: NetworkDeviceLogLevel): NetworkDeviceLogLevel {
-    if (typeof(config[key]) === "undefined")
-      return defaultValue;
+  private getLogLevel(
+    config: AccessoryConfig,
+    key: string,
+    defaultValue: NetworkDeviceLogLevel
+  ): NetworkDeviceLogLevel {
+    if (typeof config[key] === "undefined") return defaultValue;
 
-    const type = typeof(config[key]);
+    const type = typeof config[key];
     if (type !== "string")
-      throw new Error(`Got incorrect value type for config key '${key}' expected string, got '${type}'`);
+      throw new Error(
+        `Got incorrect value type for config key '${key}' expected string, got '${type}'`
+      );
 
     if (!Object.values(NetworkDeviceLogLevel).includes(config[key] as string))
-      throw new Error(`Got incorrect log level for config key '${key}': '${config[key]}'`);
+      throw new Error(
+        `Got incorrect log level for config key '${key}': '${config[key]}'`
+      );
 
-    return NetworkDeviceLogLevel[config[key] as keyof typeof NetworkDeviceLogLevel];
+    return NetworkDeviceLogLevel[
+      config[key] as keyof typeof NetworkDeviceLogLevel
+    ];
   }
 }
