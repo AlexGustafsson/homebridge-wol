@@ -219,7 +219,7 @@
         {
           "key": "pingsToChange",
           "condition": {
-            "functionBody": "return (model.host && model.host.length > 0)"
+            "functionBody": "return (model.pingCommand && model.pingCommand.length > 0)"
           }
         },
         {
