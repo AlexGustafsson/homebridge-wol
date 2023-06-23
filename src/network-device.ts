@@ -271,7 +271,10 @@ export default class NetworkDevice {
     }
 
     if (shutDown) {
-      this.log.info("Waiting for shutdown grace time (%dms)", this.config.host);
+      this.log.info(
+        "Waiting for shutdown grace time (%dms)",
+        this.config.shutdownGraceTime
+      );
       await wait(this.config.shutdownGraceTime);
     } else {
       this.log.warn("No way of shutting down the device was configured");
