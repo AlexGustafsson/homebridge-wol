@@ -68,16 +68,16 @@ export default class Pinger extends EventEmitter {
    * @param immediate Whether or not to return the current state. Uses a buffer otherwise.
    */
   async pollState(immediate: boolean = false): Promise<void> {
-    // Trust the ping command to return a true state
+    
+    // Check if this is pingCommand or normal ping. Use history pinging either way.
     if (this.config.pingCommand) {
       const isOnline = await this.executePingCommand();
-      this.emit("stateChanged", isOnline);
-      return;
+      this.history.push(isOnline);
     }
-
-    // Use history for pinging, since it may be unreliable
-    const isOnline = await this.ping();
-    this.history.push(isOnline);
+    else {
+      const isOnline = await this.ping();
+      this.history.push(isOnline);
+    }
 
     // If there are not enough measurements yet, return prematurely
     if (!immediate && this.history.length < this.config.pingsToChange) return;
