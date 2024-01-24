@@ -37,10 +37,10 @@ body:
       label: Environment
       description: |
         examples:
-          - **os and os version**: Ubuntu 20.04
-          - **node version**: 13.14.0
-          - **homebridge version**: 7.6.3
-          - **homebridge-wol version**: 5.0.0
+          - **os and os version**: Ubuntu 24.04
+          - **node version**: 18.0.0
+          - **homebridge version**: 1.7.0
+          - **homebridge-wol version**: 6.0.0
       render: Markdown
       value: |
         - os and os version:
