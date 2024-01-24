@@ -28,7 +28,7 @@ export default class Pinger extends EventEmitter {
       throw new Error("Cannot execute ping command - no command configured");
 
     const commandName = this.config.pingCommand.split(" ")[0];
-    this.log.debug("Attempting to poll state using \"%s\"", commandName);
+    this.log.debug('Attempting to poll state using "%s"', commandName);
 
     try {
       await exec(this.config.pingCommand, {

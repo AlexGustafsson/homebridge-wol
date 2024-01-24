@@ -1,5 +1,4 @@
-version: '3.8'
-
+version: "3.8"
 
 services:
   homebridge-wol:
@@ -9,10 +8,10 @@ services:
     networks:
       - homebridge-wol
     ports:
-      - '8080:8080'
-      - '5353:5353'
-      - '5353:5353/udp'
-      - '51826:51826'
+      - "8080:8080"
+      - "5353:5353"
+      - "5353:5353/udp"
+      - "51826:51826"
 
   mac:
     build:
