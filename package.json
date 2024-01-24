@@ -24,8 +24,8 @@
   "contributors": [],
   "license": "MIT",
   "engines": {
-    "node": "^18 || ^20",
-    "homebridge": "^1.6.0"
+    "node": ">=10.0.0",
+    "homebridge": ">=1.0.0"
   },
   "dependencies": {
     "ping": "^0.4.4",
