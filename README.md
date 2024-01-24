@@ -240,7 +240,7 @@ npm run lint
 # with default credentials admin:admin
 npm run test
 
-# Run Homebridge, Homebridge Config UI X and Homebridge WoL on the current maintainance node LTS version
+# Run Homebridge, Homebridge Config UI X and Homebridge WoL on the current maintenance node LTS version
 docker-compose -f integration/docker-compose.yml up --force-recreate
 
 # If you make changes to the code base, you may have to rebuild the containers before running the above command

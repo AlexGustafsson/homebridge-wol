@@ -1,8 +1,8 @@
 # This Dockerfile runs the integration environment using Homebridge,
-# Homebridge Config UI X and the latest maintaince LTS version of node
+# Homebridge Config UI X and the latest maintenance LTS version of node
 
-# Use the latest maintainance LTS version
-FROM node:10-alpine
+# Use the latest maintenance LTS version
+FROM node:18-alpine
 
 WORKDIR /etc/homebridge-wol
 

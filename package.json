@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "tsc --noEmit && eslint \"src/**/*.{js,ts}\" --quiet --fix",
-    "test": "rm -rf integration/homebridge-wol/accessories integration/homebridge-wol/persist && cd integration/homebridge-wol && npm install && npx homebridge --insecure --plugin-path node_modules --user-storage-path ./ | tee log.txt"
+    "test": "rm -rf integration/homebridge-wol/accessories integration/homebridge-wol/persist && cd integration/homebridge-wol && npm install && npm exec homebridge --insecure --plugin-path node_modules --user-storage-path ./ | tee log.txt"
   },
   "keywords": [
     "homebridge-plugin",
@@ -24,8 +24,8 @@
   "contributors": [],
   "license": "MIT",
   "engines": {
-    "node": ">=10.0.0",
-    "homebridge": ">=1.0.0"
+    "node": "^18 || ^20",
+    "homebridge": "^1.6.0"
   },
   "dependencies": {
     "ping": "^0.4.4",
