@@ -17,6 +17,7 @@ export class NetworkDeviceConfig {
   pingCommandTimeout = 0;
 
   mac: string | null = null;
+  port = 9;
   broadcastAddress: string | null = null;
   startCommand: string | null = null;
   startCommandTimeout = 0;
@@ -75,6 +76,7 @@ export class NetworkDeviceConfig {
       1000;
 
     this.mac = this.getString(config, "mac", this.mac);
+    this.port = this.getNumber(config, "port", this.port);
     this.broadcastAddress = this.getString(
       config,
       "broadcastAddress",

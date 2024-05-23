@@ -176,6 +176,7 @@ export default class NetworkDevice {
       try {
         await wake(this.config.mac, {
           address: this.config.broadcastAddress as string | undefined,
+          port: this.config.port
         });
       } catch (error) {
         this.log.error(

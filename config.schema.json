@@ -76,6 +76,12 @@
         "type": "string",
         "required": false
       },
+      "port": {
+        "title": "Port",
+        "description": "The target port to send packet to. Defaults to 9",
+        "type": "number",
+        "required": false
+      },
       "broadcastAddress": {
         "title": "Broadcast address",
         "description": "The broadcast address to use when sending the Wake on LAN packet, such as 172.16.1.255.",
