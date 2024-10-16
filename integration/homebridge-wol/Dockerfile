@@ -9,6 +9,8 @@ WORKDIR /etc/homebridge-wol
 # Install dependencies
 RUN apk add --update --no-cache sshpass openssh
 
+WORKDIR /var/homebridge-wol
+
 # Copy over project files
 COPY . .
 

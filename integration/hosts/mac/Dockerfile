@@ -2,7 +2,7 @@
 
 FROM alpine:3
 
-WORKDIR /etc/homebridge-wol
+WORKDIR /var/homebridge-wol
 
 # Install dependencies and add a user "user" with the password "user"
 RUN apk add --update --no-cache bash dropbear && \
