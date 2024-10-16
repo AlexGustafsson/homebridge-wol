@@ -255,10 +255,13 @@ npm run lint
 npm run test
 
 # Run Homebridge, Homebridge Config UI X and Homebridge WoL on the current maintenance node LTS version
-docker-compose -f integration/docker-compose.yml up --force-recreate
+docker compose --file integration/docker-compose.yml up --force-recreate
 
 # If you make changes to the code base, you may have to rebuild the containers before running the above command
-docker-compose -f integration/docker-compose.yml build
+docker compose --file integration/docker-compose.yml build
+
+# If you are using macOS, use colima with a command such as the following
+colima start --cpu 2 --memory 2 --disk 50 --mount-type virtiofs --vm-type vz
 ```
 
 The things to look out for when running the dockerized environment is:
