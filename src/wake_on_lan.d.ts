@@ -1,0 +1,1 @@
+declare module 'wake_on_lan';
