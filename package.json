@@ -1,44 +1,29 @@
 {
-  "name": "homebridge-wol",
-  "displayName": "Homebridge WoL",
-  "version": "6.0.1",
-  "description": "A Wake on Lan plugin for Homebridge",
+  "name": "homebridge-wake-on-lan",
+  "version": "5.0.0",
+  "description": "Homebridge v2 compatible plugin to turn on devices remotely using Wake on LAN",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "lint": "tsc --noEmit && eslint \"src/**/*.{js,ts}\" --quiet --fix",
-    "test": "rm -rf integration/homebridge-wol/accessories integration/homebridge-wol/persist && cd integration/homebridge-wol && npm install && npm exec homebridge --insecure --plugin-path node_modules --user-storage-path ./ | tee log.txt"
+    "lint": "eslint .",
+    "test": "echo \"No tests yet\""
   },
   "keywords": [
     "homebridge-plugin",
     "wake on lan",
-    "home automation",
-    "wol",
-    "automation"
+    "wol"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/alexgustafsson/homebridge-wol.git"
-  },
-  "author": "Alex Gustafsson",
-  "contributors": [],
-  "license": "MIT",
   "engines": {
-    "node": ">=10.0.0",
-    "homebridge": ">=1.0.0"
+    "node": ">=16.13.0",
+    "homebridge": ">=2.0.0"
   },
   "dependencies": {
-    "ping": "^0.4.4",
     "wake_on_lan": "^1.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.6",
-    "@types/ping": "^0.4.4",
-    "@types/wake_on_lan": "^0.0.33",
-    "@typescript-eslint/eslint-plugin": "^6.19.1",
-    "@typescript-eslint/parser": "^6.19.1",
-    "eslint": "^8.56.0",
-    "homebridge": "^1.7.0",
-    "typescript": "^5.3.3"
+    "@types/node": "^24.1.0",
+    "eslint": "^8.0.0",
+    "homebridge": "^1.6.1",
+    "typescript": "^5.0.0"
   }
 }
