@@ -1,4 +1,4 @@
-import { Logger } from "homebridge";
+import type { Logger } from "homebridge"
 
 export enum NetworkDeviceLogLevel {
   Debug = 7,
@@ -13,14 +13,14 @@ export enum NetworkDeviceLogLevel {
 }
 
 export class NetworkDeviceLogger {
-  upstream: Logger;
-  namespace: string;
+  upstream: Logger
+  namespace: string
 
-  level: NetworkDeviceLogLevel = NetworkDeviceLogLevel.Info;
+  level: NetworkDeviceLogLevel = NetworkDeviceLogLevel.Info
 
   constructor(upstream: Logger, namespace: string) {
-    this.upstream = upstream;
-    this.namespace = namespace;
+    this.upstream = upstream
+    this.namespace = namespace
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: used by upstream logger
@@ -29,24 +29,24 @@ export class NetworkDeviceLogger {
     // homebridge take care of it - allows for it to be easily configured
     // per accessory
     if (this.level >= NetworkDeviceLogLevel.Debug)
-      this.upstream.info(`[${this.namespace}] ${message}`, ...parameters);
+      this.upstream.info(`[${this.namespace}] ${message}`, ...parameters)
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: used by upstream logger
   info(message: unknown, ...parameters: any[]): void {
     if (this.level >= NetworkDeviceLogLevel.Info)
-      this.upstream.info(`[${this.namespace}] ${message}`, ...parameters);
+      this.upstream.info(`[${this.namespace}] ${message}`, ...parameters)
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: used by upstream logger
   warn(message: unknown, ...parameters: any[]): void {
     if (this.level >= NetworkDeviceLogLevel.Warning)
-      this.upstream.warn(`[${this.namespace}] ${message}`, ...parameters);
+      this.upstream.warn(`[${this.namespace}] ${message}`, ...parameters)
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: used by upstream logger
   error(message: unknown, ...parameters: any[]): void {
     if (this.level >= NetworkDeviceLogLevel.Error)
-      this.upstream.error(`[${this.namespace}] ${message}`, ...parameters);
+      this.upstream.error(`[${this.namespace}] ${message}`, ...parameters)
   }
 }

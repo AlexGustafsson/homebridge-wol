@@ -1,10 +1,10 @@
-import { promisify } from "util";
-import { exec as execSync } from "child_process";
+import { exec as execSync } from "node:child_process"
+import { promisify } from "node:util"
 
-import wol, { WakeOptions } from "wake_on_lan";
+import wol, { type WakeOptions } from "wake_on_lan"
 
 /** An async version of Node's {@link exec}. */
-export const exec = promisify(execSync);
+export const exec = promisify(execSync)
 
 /**
  * Send WoL magic packets.
@@ -14,11 +14,11 @@ export const exec = promisify(execSync);
 export function wake(macAddress: string, options: WakeOptions): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     wol.wake(macAddress, options, (error: Error) => {
-      if (error) return reject(error);
+      if (error) return reject(error)
 
-      resolve();
-    });
-  });
+      resolve()
+    })
+  })
 }
 
 /**
@@ -27,6 +27,6 @@ export function wake(macAddress: string, options: WakeOptions): Promise<void> {
  */
 export function wait(milliseconds: number): Promise<void> {
   return new Promise((resolve) => {
-    setTimeout(resolve, milliseconds);
-  });
+    setTimeout(resolve, milliseconds)
+  })
 }
