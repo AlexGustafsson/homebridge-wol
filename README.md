@@ -234,7 +234,7 @@ Beyond all helpful issues and wiki posts, this repository has seen modifications
 
 ### Development
 
-```
+```shell
 # Clone project
 git clone https://github.com/AlexGustafsson/homebridge-wol.git && cd homebridge-wol
 
