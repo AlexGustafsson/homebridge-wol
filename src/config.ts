@@ -55,7 +55,7 @@ export class NetworkDeviceConfig {
       "serialNumber",
       new Array(4)
         .fill(null)
-        .map((_) => Math.round(Math.random() * 1e5).toString())
+        .map(() => Math.round(Math.random() * 1e5).toString())
         .join("-")
     ) as string;
 

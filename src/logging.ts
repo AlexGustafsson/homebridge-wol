@@ -23,6 +23,7 @@ export class NetworkDeviceLogger {
     this.namespace = namespace;
   }
 
+  // biome-ignore lint/suspicious/noExplicitAny: used by upstream logger
   debug(message: unknown, ...parameters: any[]): void {
     // Use info instead of debug to control the level here instead of letting
     // homebridge take care of it - allows for it to be easily configured
@@ -31,16 +32,19 @@ export class NetworkDeviceLogger {
       this.upstream.info(`[${this.namespace}] ${message}`, ...parameters);
   }
 
+  // biome-ignore lint/suspicious/noExplicitAny: used by upstream logger
   info(message: unknown, ...parameters: any[]): void {
     if (this.level >= NetworkDeviceLogLevel.Info)
       this.upstream.info(`[${this.namespace}] ${message}`, ...parameters);
   }
 
+  // biome-ignore lint/suspicious/noExplicitAny: used by upstream logger
   warn(message: unknown, ...parameters: any[]): void {
     if (this.level >= NetworkDeviceLogLevel.Warning)
       this.upstream.warn(`[${this.namespace}] ${message}`, ...parameters);
   }
 
+  // biome-ignore lint/suspicious/noExplicitAny: used by upstream logger
   error(message: unknown, ...parameters: any[]): void {
     if (this.level >= NetworkDeviceLogLevel.Error)
       this.upstream.error(`[${this.namespace}] ${message}`, ...parameters);

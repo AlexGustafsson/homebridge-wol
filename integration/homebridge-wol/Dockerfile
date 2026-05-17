@@ -2,7 +2,7 @@
 # Homebridge Config UI X and the latest maintenance LTS version of node
 
 # Use the latest maintenance LTS version
-FROM node:18-alpine
+FROM node:22-alpine
 
 WORKDIR /etc/homebridge-wol
 
