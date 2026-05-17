@@ -1,29 +1,18 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
-    "module": "commonjs",
-    "lib": [
-      "es2015",
-      "es2016",
-      "es2017",
-      "es2018"
-    ],
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "target": "ES2022",
+    "lib": ["DOM", "ES2022"],
+    "rootDir": "src",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "strict": true,
-    "esModuleInterop": true,
-    "noImplicitAny": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src/"
-  ],
-  "exclude": [
-    "**/*.spec.ts"
-  ]
+  "include": ["src"]
 }
