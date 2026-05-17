@@ -1,44 +1,42 @@
 {
-	"name": "homebridge-wol",
-	"displayName": "Homebridge WoL",
-	"version": "7.0.0-beta.0",
-	"description": "A Wake on Lan plugin for Homebridge",
-	"main": "dist/index.js",
-	"scripts": {
-		"build": "tsc",
-		"lint": "tsc --noEmit && eslint .",
-		"format": "eslint --fix .",
-		"test": "rm -rf integration/homebridge-wol/accessories integration/homebridge-wol/persist && cd integration/homebridge-wol && npm install --install-links && npm exec homebridge -- --insecure --plugin-path node_modules --user-storage-path ./ | tee log.txt"
-	},
-	"keywords": [
-		"homebridge-plugin",
-		"wake on lan",
-		"home automation",
-		"wol",
-		"automation"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/alexgustafsson/homebridge-wol.git"
-	},
-	"author": "Alex Gustafsson",
-	"contributors": [],
-	"license": "MIT",
-	"engines": {
-		"homebridge": "^2.0.0",
-		"node": ">=22"
-	},
-	"dependencies": {
-		"ping": "1.0.0",
-		"wake_on_lan": "1.0.0"
-	},
-	"devDependencies": {
-		"@eslint/js": "10.0.1",
-		"@types/node": "22.19.19",
-		"@types/wake_on_lan": "0.0.33",
-		"eslint": "10.4.0",
-		"homebridge": "2.0.2",
-		"typescript": "6.0.3",
-		"typescript-eslint": "8.59.3"
-	}
+  "name": "homebridge-wol",
+  "displayName": "Homebridge WoL",
+  "version": "7.0.0-beta.0",
+  "description": "A Wake on Lan plugin for Homebridge",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tsc --noEmit && biome ci --no-errors-on-unmatched .",
+    "format": "biome check --write --no-errors-on-unmatched .",
+    "test": "rm -rf integration/homebridge-wol/accessories integration/homebridge-wol/persist && cd integration/homebridge-wol && npm install --install-links && npm exec homebridge -- --insecure --plugin-path node_modules --user-storage-path ./ | tee log.txt"
+  },
+  "keywords": [
+    "homebridge-plugin",
+    "wake on lan",
+    "home automation",
+    "wol",
+    "automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexgustafsson/homebridge-wol.git"
+  },
+  "author": "Alex Gustafsson",
+  "contributors": [],
+  "license": "MIT",
+  "engines": {
+    "homebridge": "^2.0.0",
+    "node": ">=22"
+  },
+  "dependencies": {
+    "ping": "1.0.0",
+    "wake_on_lan": "1.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.15",
+    "@types/node": "22.19.19",
+    "@types/wake_on_lan": "0.0.33",
+    "homebridge": "2.0.2",
+    "typescript": "6.0.3"
+  }
 }
