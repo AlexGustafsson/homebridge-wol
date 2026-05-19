@@ -40,7 +40,7 @@ body:
           - **os and os version**: Ubuntu 24.04
           - **node version**: 18.0.0
           - **homebridge version**: 1.7.0
-          - **homebridge-wol version**: 6.0.0
+          - **homebridge-wol version**: 7.0.0
       render: Markdown
       value: |
         - os and os version:
